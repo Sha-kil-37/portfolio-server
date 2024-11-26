@@ -1,8 +1,10 @@
 const transporter = require("../../config/mail/mailConfig");
 require("dotenv").config();
-const mailSender = async function (recever, code) {
+const mailSender = async function (recever, code, exp) {
   // send mail with defined transport object
   const resetCode = code;
+  const resetCodeExp = Math.round((exp - Date.now()) / 1000 / 60);
+  //
   const resetLink = "https://www.facebook.com/shak.sakil.96"; // Generate dynamically
   const emailHTML = `
   <!DOCTYPE html>
@@ -63,6 +65,7 @@ const mailSender = async function (recever, code) {
       <p>Hello,</p>
       <p>You recently requested to reset your password. Use the code below to reset it:</p>
       <h2 style="text-align: center; color: #4CAF50;">{RESET_CODE}</h2>
+      <p>Your Verification Code Expire After {reset_CodeExp} minutes</p>
       <p>If you didn’t request this, please ignore this email or contact support if you have concerns.</p>
     </div>
     <div class="button-container">
@@ -82,7 +85,8 @@ const mailSender = async function (recever, code) {
     to: recever,
     subject: "Password Reset Code verification",
     html: emailHTML
-      .replace(`{RESET_CODE}`, code)
+      .replace(`{reset_CodeExp}`, resetCodeExp)
+      .replace(`{RESET_CODE}`, resetCode)
       .replace(/{RESET_LINK}/g, resetLink),
   };
   //

@@ -88,6 +88,7 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/checkAuthToken"),
     handler: require("../handler/resetPassword"),
   });
+  // fastify.
   // call done function
   done();
 }
