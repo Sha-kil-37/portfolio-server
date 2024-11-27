@@ -1,7 +1,21 @@
 const Admin = require("../model/admin/admin.model");
+const bcrypt = require("bcryptjs");
 module.exports = async function (request, reply) {
+  const { name, email, password } = request.body;
   try {
-    const newAdmin = new Admin(request.body);
+    const findAdmin = await Admin.findOne({ email });
+    const salt = await bcrypt.genSalt(10);
+    const hashPass = await bcrypt.hash(password, salt);
+    if (findAdmin !== null) {
+      return reply
+        .status(400)
+        .send({ success: false, msg: "Admin Already  Exist" });
+    }
+    const newAdmin = new Admin({
+      name: name,
+      email: email,
+      password: hashPass,
+    });
     await newAdmin.save();
     return reply
       .status(201)

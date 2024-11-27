@@ -2,7 +2,7 @@ require("dotenv").config();
 //
 const fastify = require("fastify")({ logger: true });
 fastify.register(require("@fastify/jwt"), {
-  secret: process.env.TOKEN_SECRECT,
+  secret: process.env.TOKEN_SECRET,
 });
 //
 fastify.register(require("./src/routes/adminRoute"), {

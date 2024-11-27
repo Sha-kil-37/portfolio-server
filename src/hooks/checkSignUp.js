@@ -1,9 +1,15 @@
 require("dotenv").config();
-
-module.exports = function (request, reply, done) {
-  if (request.body.email === process.env.OWNER_GMAIL) {
-    return done();
-  } else {
-    return reply.status(401).send({ success: false, msg: "Unauthorize" });
+module.exports = async function (request, reply) {
+  const { name, email, password } = request.body;
+  try {
+    if (email !== `${process.env.OWNER_GMAIL}`) {
+      return reply
+        .status(400)
+        .send({ success: false, msg: "Invalid Credential" });
+    }
+  } catch (error) {
+    return reply
+      .status(500)
+      .send({ success: false, msg: "Internal Server Error" });
   }
 };

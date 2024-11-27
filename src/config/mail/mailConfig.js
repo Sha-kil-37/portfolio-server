@@ -1,12 +1,26 @@
 const nodemailer = require("nodemailer");
-// EMAIL SENDING CONFIG
+require("dotenv").config();
 const transporter = nodemailer.createTransport({
-  service: "gmail.com",
-  port: 465,
-  secure: true, // true for port 465, false for other ports
+  service: "Gmail",
+  port: 587,
+  secure: false, // true for port 465
   auth: {
-    user: process.env.OWNER_GMAIL,
-    pass: process.env.MAIL_PASS,
+    user: 'your-email@example.com', // your SMTP username
+    user:process.env.OWNER_GMAIL,
+    pass: process.env.APP_PASS,    // your SMTP password
   },
 });
-module.exports = transporter;
+// 
+const mailOption = function (recever, subject, text, html) {
+  // 
+  
+  // 
+  return {
+    from: process.env.OWNER_GMAIL,
+    to: recever,
+    subject: subject, // Subject line
+    text: text,
+    html: html, // html body
+  };
+};
+module.exports = { transporter, mailOption };

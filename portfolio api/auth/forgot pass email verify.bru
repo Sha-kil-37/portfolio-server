@@ -1,0 +1,17 @@
+meta {
+  name: forgot pass email verify
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/admin/forgot-pass-email-verify
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email":"sakildevmern@gmail.com"
+  }
+}

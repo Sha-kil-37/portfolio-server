@@ -29,55 +29,21 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/checkSignUp"),
-    handler: require("../handler/signUp"),
+    preHandler: require("../hooks/checkSignUp.js"),
+    handler: require("../handler/signUp.js"),
   });
   // ADMIN SIGNIN ROUTE
-  fastify.get("/sign-in", {
+  fastify.post("/sign-in", {
     schema: {
-      querystring: {
+      body: {
         type: "object",
-        properties: {
-          email: { type: "string" },
-          password: { type: "string", minLength: 6 },
-        },
         required: ["email", "password"],
-      },
-    },
-    preHandler: require("../hooks/checkSignIn"),
-    handler: require("../handler/signIn"),
-  });
-  // ADMIN PASS RESET EMAIL VERIFICATION ROUTE
-  fastify.get("/reset-email-verify", {
-    preHandler: require("../hooks/checkAuthToken"),
-    handler: require("../handler/resetEmailVerify"),
-  });
-  // ADMIN PASS RESET CODE VERIFICATION ROUTE
-  fastify.post("/reset-code-verify", {
-    schema: {
-      body: {
-        type: "object",
-        required: ["code"],
         properties: {
-          code: {
+          email: {
             type: "string",
-            maxLength: 6,
-            minLength: 6,
+            format: "email",
           },
-        },
-      },
-    },
-    preHandler: require("../hooks/checkAuthToken"),
-    handler: require("../handler/resetCodeVerify"),
-  });
-  // ADMIN PASSWORD RESET
-  fastify.post("/reset-pass", {
-    schema: {
-      body: {
-        type: "object",
-        required: ["newPassword"],
-        properties: {
-          newPassword: {
+          password: {
             type: "string",
             minLength: 6,
             maxLength: 100,
@@ -85,11 +51,27 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/checkAuthToken"),
-    handler: require("../handler/resetPassword"),
+    preHandler: require("../hooks/checkSignIn.js"),
+    handler: require("../handler/signIn.js"),
   });
-  // fastify.
-  // call done function
+  // ADMIN FORGOT PASS EMAIL VERIFICATION ROUTE
+  fastify.post("/forgot-pass-email-verify", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["email"],
+        properties: {
+          email: {
+            type: "string",
+            format: "email",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/checkForgotPassEmailVerify.js"),
+    handler: require("../handler/forgotPasswordEmailVerify.js"),
+  });
+
   done();
 }
 module.exports = adminRouter;

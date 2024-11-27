@@ -21,18 +21,14 @@ const adminSchema = new Schema(
       default: null,
     },
     verifyCodeExp: {
-      type: Number,
+      type: String,
       default: null,
     },
   },
   { versionKey: false, timestamps: true }
 );
 //
-adminSchema.pre("save", async function (next) {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
-});
+
 //
 const Admin = mongoose.model("admin", adminSchema);
 module.exports = Admin;

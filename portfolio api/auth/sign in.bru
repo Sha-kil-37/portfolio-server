@@ -4,13 +4,15 @@ meta {
   seq: 3
 }
 
-get {
-  url: {{baseUrl}}/admin/sign-in?email=sakildevmern@gmail.com&password=123456
-  body: none
+post {
+  url: {{baseUrl}}/admin/sign-in
+  body: json
   auth: none
 }
 
-params:query {
-  email: sakildevmern@gmail.com
-  password: 123456
+body:json {
+  {
+    "email":"sakildevmern@gmail.com",
+    "password":"123456"
+  }
 }
