@@ -71,7 +71,42 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/checkForgotPassEmailVerify.js"),
     handler: require("../handler/forgotPasswordEmailVerify.js"),
   });
-
+  // ADMIN FORGOT PASS CODE VERIFICATION ROUTE
+  fastify.post("/forgot-pass-code-verify", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["code"],
+        properties: {
+          code: {
+            type: "string",
+            maxLength: 6,
+            minLength: 6,
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/checkForgotPassCodeVerification.js"),
+    handler: require("../handler/forgotPassCodeVerification.js"),
+  });
+  // ADMIN PASS CHANGE ROUTE
+  fastify.post("/change-pass", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["password"],
+        properties: {
+          password: {
+            type: "string",
+            maxLength: 100,
+            minLength: 6,
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/checkAuth.js"),
+    handler: require("../handler/changePass.js"),
+  });
   done();
 }
 module.exports = adminRouter;

@@ -1,0 +1,21 @@
+meta {
+  name: change pass
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/admin/change-pass
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "password":"555555"
+  }
+}

@@ -37,7 +37,7 @@ const forgotPassEmailVerifyTemplate = `<!DOCTYPE html>
     <div>
       <p>Hello,</p>
       <p>You recently requested to reset your password. Use the code below to reset it:</p>
-      <h2>{generateCode}</h2>
+      <h2>{verifyCode}</h2>
       <h5>Your Code Expire in {verifyCodeExpMail} minutes</h5>
       <p>If you didn’t request this, please ignore this email or contact support if you have concerns.</p>
     </div>
