@@ -29,8 +29,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/checkSignUp.js"),
-    handler: require("../handler/signUp.js"),
+    preHandler: require("../hooks/auth/checkSignUp.js"),
+    handler: require("../handler/auth/signUp.js"),
   });
   // ADMIN SIGNIN ROUTE
   fastify.post("/sign-in", {
@@ -51,11 +51,11 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/checkSignIn.js"),
-    handler: require("../handler/signIn.js"),
+    preHandler: require("../hooks/auth/checkSignIn.js"),
+    handler: require("../handler/auth/signIn.js"),
   });
   // ADMIN FORGOT PASS EMAIL VERIFICATION ROUTE
-  fastify.post("/forgot-pass-email-verify", {
+  fastify.patch("/forgot-pass-email-verify", {
     schema: {
       body: {
         type: "object",
@@ -68,8 +68,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/checkForgotPassEmailVerify.js"),
-    handler: require("../handler/forgotPasswordEmailVerify.js"),
+    preHandler: require("../hooks/auth/checkForgotPassEmailVerify.js"),
+    handler: require("../handler/auth/forgotPasswordEmailVerify.js"),
   });
   // ADMIN FORGOT PASS CODE VERIFICATION ROUTE
   fastify.post("/forgot-pass-code-verify", {
@@ -86,11 +86,11 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/checkForgotPassCodeVerification.js"),
-    handler: require("../handler/forgotPassCodeVerification.js"),
+    preHandler: require("../hooks/auth/checkForgotPassCodeVerification.js"),
+    handler: require("../handler/auth/forgotPassCodeVerification.js"),
   });
   // ADMIN PASS CHANGE ROUTE
-  fastify.post("/change-pass", {
+  fastify.patch("/change-pass", {
     schema: {
       body: {
         type: "object",
@@ -104,8 +104,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/checkAuth.js"),
-    handler: require("../handler/changePass.js"),
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/auth/changePass.js"),
   });
   done();
 }

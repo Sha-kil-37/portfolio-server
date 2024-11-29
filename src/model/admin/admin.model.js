@@ -1,11 +1,16 @@
+// ADMIN DATA MODEL
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const bcrypt = require("bcryptjs");
+// 
 const adminSchema = new Schema(
   {
     name: {
       type: String,
       required: true,
+    },
+    title: {
+      type: String,
+      default: null,
     },
     email: {
       type: String,
@@ -15,6 +20,10 @@ const adminSchema = new Schema(
     password: {
       type: String,
       required: true,
+    },
+    image: {
+      type: String,
+      default: null,
     },
     verifyCode: {
       type: String,
@@ -30,6 +39,6 @@ const adminSchema = new Schema(
 //
 
 //
-const Admin = mongoose.model("admin", adminSchema);
+const Admin = mongoose.model("Admin", adminSchema);
 module.exports = Admin;
 //

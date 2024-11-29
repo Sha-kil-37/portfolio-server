@@ -1,4 +1,4 @@
-const Admin = require("../model/admin/admin.model");
+const Admin = require("../../model/admin/admin.model.js");
 const bcrypt = require("bcryptjs");
 module.exports = async function (request, reply) {
   const { name, email, password } = request.body;

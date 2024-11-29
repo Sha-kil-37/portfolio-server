@@ -5,7 +5,7 @@ module.exports = async function (request, reply) {
     //
     const token = this.jwt.sign(
       { email }, // Payload
-      { expiresIn: Math.floor(Date.now() / 1000) + 60 * 60 } // Expiration time
+      { expiresIn: "10m" } // Expiration time
     );
     return reply.status(200).send({
       success: true,
