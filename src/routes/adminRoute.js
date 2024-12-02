@@ -198,6 +198,20 @@ function adminRouter(fastify, options, done) {
     ],
     handler: require("../handler/cud/project/updateProject.js"),
   });
+  // ADMIN PROJECT DELETE ROUTE
+  fastify.delete("/delete-project", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks//auth/checkAuth.js"),
+    handler: require("../handler/cud/project/deleteProject.js"),
+  });
   done();
 }
 module.exports = adminRouter;

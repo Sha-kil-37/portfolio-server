@@ -68,27 +68,45 @@ module.exports = async function (request, reply) {
       });
     }
     //
+
     const findImageId = await Project.findOne({ user: email, _id: id });
-    await this.cloudinary.uploader.destroy(`${"portfolio project"}/${findImageId.imageURL.public_id}`);
-    // const result = await this.cloudinary.uploader.upload(request.file.path, {
-    //   folder: "portfolio project",
-    //   public_id: publicId,
-    // });
-    // const newProject = new Project({
-    //   title: title,
-    //   description: description,
-    //   frontEndTechnologies: frontEndTechnologies,
-    //   backEndTechnologies: backEndTechnologies,
-    //   liveURL: liveURL,
-    //   repoURL: repoURL,
-    //   imageURL: { url: result.secure_url, public_id: publicId },
-    //   user: email,
-    // });
-    // await newProject.save();
-    // return reply.status(201).send({
-    //   success: true,
-    //   msg: "Project Add Successfully",
-    // });
+    await this.cloudinary.uploader.destroy(
+      `${"portfolio project"}/${findImageId.imageURL.public_id}`
+    );
+    const result = await this.cloudinary.uploader.upload(request.file.path, {
+      folder: "portfolio project",
+      public_id: `${"portfolio project"}/${Date.now()}-${Math.random()
+        .toString(36)
+        .substring(2)}`,
+    });
+
+    await Project.updateOne(
+      {
+        _id: id,
+        user: email,
+      },
+      {
+        $set: {
+          title: title,
+          description: description,
+          frontEndTechnologies: frontEndTechnologies,
+          backEndTechnologies: backEndTechnologies,
+          liveURL: liveURL,
+          repoURL: repoURL,
+          imageURL: {
+            url: result.secure_url,
+            public_id: `${"portfolio project"}/${Date.now()}-${Math.random()
+              .toString(36)
+              .substring(2)}`,
+          },
+        },
+      }
+    );
+
+    return reply.status(200).send({
+      success: true,
+      msg: "Project Update Successfully",
+    });
   } catch (error) {
     console.log(error);
     return reply.status(500).send({
