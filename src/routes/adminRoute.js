@@ -1,3 +1,5 @@
+const upload = require("../utils/multer/multer.js");
+
 function adminRouter(fastify, options, done) {
   // ADMIN WELLCOME ROUTE
   fastify.get("/", {
@@ -106,6 +108,95 @@ function adminRouter(fastify, options, done) {
     },
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/auth/changePass.js"),
+  });
+  // ADMIN PROFILE CHANGE
+  fastify.patch("/profile-upload", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("profile"),
+    ],
+    handler: require("../handler/auth/profileUpload.js"),
+  });
+  //  ADMIN SKILL ADD ROUTE
+  fastify.post("/add-skill", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["category", "skill", "description"],
+        properties: {
+          category: {
+            type: "string",
+          },
+          skill: {
+            type: "string",
+          },
+          description: {
+            type: "string",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/skill/addSkill.js"),
+  });
+  // ADMIN SKILL UPDATE ROUTE
+  fastify.put("/update-skill", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+      body: {
+        type: "object",
+        required: ["category", "skill", "description"],
+        properties: {
+          category: {
+            type: "string",
+          },
+          skill: {
+            type: "string",
+          },
+          description: {
+            type: "string",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/skill/updateSkill.js"),
+  });
+  // ADMIN SKILL DELETE ROUTE
+  fastify.delete("/delete-skill", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/skill/deleteSkill.js"),
+  });
+  // ADMIN PROJECT ADD ROUTE
+  fastify.post("/add-project", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("project-image"),
+    ],
+    handler: require("../handler/cud/project/addProject.js"),
+  });
+  // ADMIN PROJECT UPDATE ROUTE
+  fastify.put("/update-project", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("project-image"),
+    ],
+    handler: require("../handler/cud/project/updateProject.js"),
   });
   done();
 }

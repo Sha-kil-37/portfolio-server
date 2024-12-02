@@ -1,0 +1,46 @@
+meta {
+  name: add project
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/add-project
+  body: multipartForm
+  auth: bearer
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "title": "Blog Website",
+    "description": "A personal portfolio showcasing my projects and skills.",
+    "frontEndTechnologies": [
+      "React",
+      "Tailwind CSS"
+    ],
+    "backEndTechnologies": [
+      "Node.js",
+      "Fastify"
+    ],
+    "liveURL": "https://myblog.com",
+    "repoURL": "https://github.com/username/blog"
+  }
+}
+
+body:multipart-form {
+  title: blog
+  description: blog website
+  frontEndTechnologies: ["React", "Tailwind","html"]
+  backEndTechnologies: ["Node.js", "MongoDB","fastify"]
+  liveURL: www.blog.com
+  repoURL: github/blog
+  project-image: @file(C:\Users\Shakil\OneDrive\Pictures\Screenshots\landscape-9175952_1280.png)
+}

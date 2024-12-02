@@ -36,7 +36,6 @@ const adminSchema = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
-//
 
 //
 const Admin = mongoose.model("Admin", adminSchema);

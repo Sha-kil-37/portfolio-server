@@ -1,0 +1,27 @@
+meta {
+  name: update skill
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/admin/update-skill?id=674c79ffcccaf0eda23033db
+  body: json
+  auth: bearer
+}
+
+params:query {
+  id: 674c79ffcccaf0eda23033db
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "category":"front end",
+    "skill":"redux",
+    "description":"state management"
+  }
+}

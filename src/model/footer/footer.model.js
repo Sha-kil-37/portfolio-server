@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// 
 const footerSchema = new mongoose.Schema(
   {
     contactInfo: {

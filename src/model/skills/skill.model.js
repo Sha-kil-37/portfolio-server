@@ -8,8 +8,16 @@ const skillSchema = new Schema(
       type: String,
       required: true,
     },
-    skills: {
-      type: Array,
+    skill: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: String,
       required: true,
     },
   },

@@ -1,0 +1,19 @@
+meta {
+  name: delete skill
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{baseUrl}}/admin/delete-skill?id=674c79ffcccaf0eda23033db
+  body: none
+  auth: bearer
+}
+
+params:query {
+  id: 674c79ffcccaf0eda23033db
+}
+
+auth:bearer {
+  token: {{token}}
+}

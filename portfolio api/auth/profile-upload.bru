@@ -1,0 +1,19 @@
+meta {
+  name: profile-upload
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{baseUrl}}/admin/profile-upload
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  profile: @file(C:\Users\Shakil\OneDrive\Pictures\personal\_E__FoodDelivery_index.html.png)
+}

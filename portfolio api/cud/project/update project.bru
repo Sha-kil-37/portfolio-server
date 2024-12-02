@@ -1,0 +1,33 @@
+meta {
+  name: update project
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/admin/update-project?id=674dc26828aab98817d44cb2
+  body: multipartForm
+  auth: bearer
+}
+
+params:query {
+  id: 674dc26828aab98817d44cb2
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  title: chat app
+  description: chating web application
+  frontEndTechnologies: ["React", "Tailwind","html"]
+  backEndTechnologies: ["Node.js", "MongoDB", "fastify"]
+  liveURL: www.chatting.com
+  repoURL: github/chatting
+  project image: @file(C:\Users\Shakil\OneDrive\Pictures\Screenshots\Screenshot 2024-12-02 141159.png)
+}

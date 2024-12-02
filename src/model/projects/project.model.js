@@ -1,7 +1,7 @@
 // PROJECT DATA MODEL
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// 
+//
 const projectSchema = new Schema(
   {
     title: {
@@ -12,8 +12,12 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
-    technologies: {
-      type: Array,
+    frontEndTechnologies: {
+      type: [String], // Array of strings to list frontend technologies
+      required: true,
+    },
+    backEndTechnologies: {
+      type: [String], // Array of strings to list backend technologies
       required: true,
     },
     liveURL: {
@@ -25,14 +29,17 @@ const projectSchema = new Schema(
       required: true,
     },
     imageURL: {
+      url: String,
+      public_id: String,
+    },
+
+    user: {
       type: String,
       required: true,
     },
   },
   { versionKey: false, timestamps: true }
 );
-//
-
 //
 const Project = mongoose.model("Project", projectSchema);
 module.exports = Project;
