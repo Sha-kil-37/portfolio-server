@@ -5,7 +5,15 @@ meta {
 }
 
 delete {
-  url: {{baseUrl}}/admin/delete-project
+  url: {{baseUrl}}/admin/delete-project?id=674ddd9289c06451573b11f0
   body: none
-  auth: none
+  auth: bearer
+}
+
+params:query {
+  id: 674ddd9289c06451573b11f0
+}
+
+auth:bearer {
+  token: {{token}}
 }

@@ -68,18 +68,17 @@ module.exports = async function (request, reply) {
       });
     }
     //
-
     const findImageId = await Project.findOne({ user: email, _id: id });
     await this.cloudinary.uploader.destroy(
       `${"portfolio project"}/${findImageId.imageURL.public_id}`
     );
+
+    // UPLOAD PROJECT IMAGE IN CLOUDINARY
+    const publicId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
     const result = await this.cloudinary.uploader.upload(request.file.path, {
       folder: "portfolio project",
-      public_id: `${"portfolio project"}/${Date.now()}-${Math.random()
-        .toString(36)
-        .substring(2)}`,
+      public_id: publicId,
     });
-
     await Project.updateOne(
       {
         _id: id,
@@ -95,14 +94,11 @@ module.exports = async function (request, reply) {
           repoURL: repoURL,
           imageURL: {
             url: result.secure_url,
-            public_id: `${"portfolio project"}/${Date.now()}-${Math.random()
-              .toString(36)
-              .substring(2)}`,
+            public_id: publicId,
           },
         },
       }
     );
-
     return reply.status(200).send({
       success: true,
       msg: "Project Update Successfully",

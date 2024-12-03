@@ -61,12 +61,10 @@ module.exports = async function (request, reply) {
         msg: "Project Already Exist",
       });
     }
-    const publicId = `${"portfolio project"}/${Date.now()}-${Math.random()
-      .toString(36)
-      .substring(2)}`;
+    const publidId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
     const result = await this.cloudinary.uploader.upload(request.file.path, {
       folder: "portfolio project",
-      public_id: publicId,
+      public_id: publidId,
     });
     const newProject = new Project({
       title: title,
@@ -75,7 +73,10 @@ module.exports = async function (request, reply) {
       backEndTechnologies: backEndTechnologies,
       liveURL: liveURL,
       repoURL: repoURL,
-      imageURL: { url: result.secure_url, public_id: publicId },
+      imageURL: {
+        url: result.secure_url,
+        public_id: publidId,
+      },
       user: email,
     });
     await newProject.save();
