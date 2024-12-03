@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// 
+//
 const footerSchema = new mongoose.Schema(
   {
     contactInfo: {
@@ -21,6 +21,10 @@ const footerSchema = new mongoose.Schema(
       },
     ],
     copyrightText: { type: String, required: true }, // e.g., '© 2024 Your Name'
+    user: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );

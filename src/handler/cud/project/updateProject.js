@@ -67,7 +67,7 @@ module.exports = async function (request, reply) {
         msg: "Project Already Exist",
       });
     }
-    //
+    // DELETE CLOUDINARY OLD IMAGE BEFORE UPDATE NEW IMAGE
     const findImageId = await Project.findOne({ user: email, _id: id });
     await this.cloudinary.uploader.destroy(
       `${"portfolio project"}/${findImageId.imageURL.public_id}`
@@ -104,7 +104,7 @@ module.exports = async function (request, reply) {
       msg: "Project Update Successfully",
     });
   } catch (error) {
-    console.log(error);
+    
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",

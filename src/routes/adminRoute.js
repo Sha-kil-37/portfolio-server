@@ -212,6 +212,114 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks//auth/checkAuth.js"),
     handler: require("../handler/cud/project/deleteProject.js"),
   });
+  // ADMIN FOOTER ADD ROUTE
+  fastify.post("/add-footer", {
+    schema: {
+      body: {
+        type: "object",
+        required: [
+          "contactInfo",
+          "socialLinks",
+          "navigationLinks",
+          "copyrightText",
+        ],
+        properties: {
+          contactInfo: {
+            type: "object",
+            required: ["email", "phone", "address"],
+            properties: {
+              email: { type: "string", format: "email" },
+              phone: { type: "string" },
+              address: { type: "string" },
+            },
+          },
+          socialLinks: {
+            type: "array",
+            items: {
+              type: "object",
+              required: ["platform", "url", "iconClass"],
+              properties: {
+                platform: { type: "string" },
+                url: { type: "string", format: "uri" },
+                iconClass: { type: "string" },
+              },
+            },
+          },
+          navigationLinks: {
+            type: "array",
+            items: {
+              type: "object",
+              required: ["name", "url"],
+              properties: {
+                name: { type: "string" },
+                url: { type: "string" },
+              },
+            },
+          },
+          copyrightText: { type: "string" },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/footer/addFooter.js"),
+  });
+  // ADMIN FOOTER UPDATE ROUTE
+  fastify.put("/update-footer", {
+    schema: {
+      body: {
+        type: "object",
+        required: [
+          "contactInfo",
+          "socialLinks",
+          "navigationLinks",
+          "copyrightText",
+        ],
+        properties: {
+          contactInfo: {
+            type: "object",
+            required: ["email", "phone", "address"],
+            properties: {
+              email: { type: "string", format: "email" },
+              phone: { type: "string" },
+              address: { type: "string" },
+            },
+          },
+          socialLinks: {
+            type: "array",
+            items: {
+              type: "object",
+              required: ["platform", "url", "iconClass"],
+              properties: {
+                platform: { type: "string" },
+                url: { type: "string", format: "uri" },
+                iconClass: { type: "string" },
+              },
+            },
+          },
+          navigationLinks: {
+            type: "array",
+            items: {
+              type: "object",
+              required: ["name", "url"],
+              properties: {
+                name: { type: "string" },
+                url: { type: "string" },
+              },
+            },
+          },
+          copyrightText: { type: "string" },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/footer/updateFooter.js"),
+  });
+  // ADMIN FOOTER DELETE
+  fastify.delete("/delete-footer", {
+    schema: {},
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler:require("../handler/cud/footer/deleteFooter.js")
+  });
   done();
 }
 module.exports = adminRouter;

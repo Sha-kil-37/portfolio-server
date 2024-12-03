@@ -1,7 +1,8 @@
-const Project = require("../../../model/projects/project.model");
 const mongoose = require("mongoose");
+const Footer = require("../../../model/footer/footer.model");
+
+//
 module.exports = async function (request, reply) {
-  //
   const { email } = request.headers;
   const { id } = request.query;
   try {
@@ -9,18 +10,10 @@ module.exports = async function (request, reply) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-    // DELETE CLOUDINARY PROJECT IMAGE BEFORE DELETE PROJECT
-    const findImageId = await Project.findOne({
-      user: email,
-      _id: id,
-    });
-    await this.cloudinary.uploader.destroy(
-      `${"portfolio project"}/${findImageId.imageURL.public_id}`
-    );
-    await Project.deleteOne({ _id: id, user: email });
+    await Footer.deleteOne({ user: email, _id: id });
     return reply.status(200).send({
       success: true,
-      msg: "Project Delete Successfully",
+      msg: "Footer Delete Successfully",
     });
   } catch (error) {
     return reply.status(500).send({

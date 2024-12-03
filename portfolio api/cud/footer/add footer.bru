@@ -1,0 +1,48 @@
+meta {
+  name: add footer
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/add-footer
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "contactInfo": {
+      "email": "contact@example.com",
+      "phone": "123-456-7890",
+      "address": "1234 Example Street, City, Country"
+    },
+    "socialLinks": [
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/your-profile",
+        "iconClass": "fab fa-github"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/your-profile",
+        "iconClass": "fab fa-linkedin"
+      }
+    ],
+    "navigationLinks": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Projects",
+        "url": "/projects"
+      }
+    ],
+    "copyrightText": "© 2024 Your Name"
+  }
+}
