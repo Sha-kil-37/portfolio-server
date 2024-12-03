@@ -20,11 +20,15 @@ const experienceSchema = new Schema(
       type: String,
       required: true,
     },
+    user: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
 //
 
 //
-const experience = mongoose.model("Experience", experienceSchema);
-module.exports = experience;
+const Experience = mongoose.model("Experience", experienceSchema);
+module.exports = Experience;

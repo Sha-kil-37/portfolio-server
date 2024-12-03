@@ -1,7 +1,7 @@
 // ADMIN DATA MODEL
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// 
+//
 const adminSchema = new Schema(
   {
     name: {
@@ -21,6 +21,10 @@ const adminSchema = new Schema(
       type: String,
       required: true,
     },
+    age: {
+      type: String,
+      default: null,
+    },
     image: {
       type: String,
       default: null,
@@ -36,7 +40,6 @@ const adminSchema = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
-
 //
 const Admin = mongoose.model("Admin", adminSchema);
 module.exports = Admin;

@@ -117,6 +117,32 @@ function adminRouter(fastify, options, done) {
     ],
     handler: require("../handler/auth/profileUpload.js"),
   });
+  // ADMIN PROFILE UPDATE
+  fastify.patch("/profile-update", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["name", "title", "age"],
+        properties: {
+          name: {
+            type: "string",
+            pattern: "^[a-zA-Zà-ÿÀ-Ÿ'\\-\\s]+$",
+          },
+          title: {
+            type: "string",
+            pattern: "^[a-zA-Zà-ÿÀ-Ÿ'\\-\\s]+$",
+          },
+          age: {
+            type: "string",
+          },
+        },
+      },
+    },
+
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/auth/profileUpdate.js"),
+  });
+  // admin route end
   //  ADMIN SKILL ADD ROUTE
   fastify.post("/add-skill", {
     schema: {
@@ -182,6 +208,7 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/cud/skill/deleteSkill.js"),
   });
+  // skill route end
   // ADMIN PROJECT ADD ROUTE
   fastify.post("/add-project", {
     preHandler: [
@@ -212,6 +239,7 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks//auth/checkAuth.js"),
     handler: require("../handler/cud/project/deleteProject.js"),
   });
+  // project route end
   // ADMIN FOOTER ADD ROUTE
   fastify.post("/add-footer", {
     schema: {
@@ -316,10 +344,40 @@ function adminRouter(fastify, options, done) {
   });
   // ADMIN FOOTER DELETE
   fastify.delete("/delete-footer", {
-    schema: {},
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
     preHandler: require("../hooks/auth/checkAuth.js"),
-    handler:require("../handler/cud/footer/deleteFooter.js")
+    handler: require("../handler/cud/footer/deleteFooter.js"),
   });
+  // footer route end
+  // ADMIN EXPERIENCE ADD ROUTE
+  fastify.post("/add-experience", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["companyName", "position", "duration", "description"],
+        properties: {
+          companyName: { type: "string" },
+          position: {
+            type: "array",
+            items: { type: "string" },
+          },
+          duration: { type: "string" },
+          description: { type: "string" },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/experience/addExperience.js"),
+  });
+  // experience route end
   done();
 }
 module.exports = adminRouter;
