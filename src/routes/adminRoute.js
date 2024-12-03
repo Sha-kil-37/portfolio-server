@@ -377,7 +377,51 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/cud/experience/addExperience.js"),
   });
+  // ADMIN EXPERIENCE UPDATE ROUTE
+  fastify.put("/update-experience", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["companyName", "position", "duration", "description"],
+        properties: {
+          companyName: { type: "string" },
+          position: {
+            type: "array",
+            items: { type: "string" },
+          },
+          duration: { type: "string" },
+          description: { type: "string" },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/experience/updateExperience.js"),
+  });
+  // ADMIN EXPERIENCE DELETE ROUTE
+  fastify.delete("/delete-experience", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/experience/deleteExperience.js"),
+  });
   // experience route end
+  // ADMIN EDUCATION ADD ROUTE
+  fastify.post("/add-education", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("education-image"),
+    ],
+    handler: require("../handler/cud/education/addEducation.js"),
+  });
+  // education route end
+
   done();
 }
 module.exports = adminRouter;

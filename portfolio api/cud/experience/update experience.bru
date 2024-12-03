@@ -5,7 +5,27 @@ meta {
 }
 
 put {
-  url: {{baseUrl}}/admin/update-experience
-  body: none
-  auth: none
+  url: {{baseUrl}}/admin/update-experience?id=674efe866a336bfc029a58ee
+  body: json
+  auth: bearer
+}
+
+params:query {
+  id: 674efe866a336bfc029a58ee
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "companyName": "Dev Zone It Solution.",
+    "position": [
+      "Backend Developer",
+      "Fastify Specialist"
+    ],
+    "duration": "June 20211 - August 2024",
+    "description": "Developed and maintained dynamic web applications using React.js, ensured cross-browser compatibility, and collaborated with design and backend teams to enhance user experience."
+  }
 }

@@ -1,12 +1,16 @@
+const mongoose = require("mongoose");
 const Experience = require("../../../model/experience/experience.model");
-
 module.exports = async function (request, reply) {
   const { email } = request.headers;
+  const { id } = request.query;
   const { companyName, position, duration, description } = request.body;
   try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return reply.status(400).send({ error: "Invalid Id" });
+    }
     const findExistExperience = await Experience.findOne({
-      user: email,
       companyName: companyName,
+      user: email,
     });
     if (findExistExperience !== null) {
       return reply.status(400).send({
@@ -14,17 +18,23 @@ module.exports = async function (request, reply) {
         msg: "Experience Already Exist",
       });
     }
-    const newExperience = new Experience({
-      companyName: companyName,
-      position: position,
-      duration: duration,
-      description: description,
-      user: email,
-    });
-    await newExperience.save();
-    return reply.status(201).send({
+    await Experience.updateOne(
+      {
+        user: email,
+        _id: id,
+      },
+      {
+        $set: {
+          companyName: companyName,
+          position: position,
+          duration: duration,
+          description: description,
+        },
+      }
+    );
+    return reply.status(200).send({
       success: true,
-      msg: "Experience Add Successfully",
+      msg: "Experience Update Successfully",
     });
   } catch (error) {
     return reply.status(500).send({

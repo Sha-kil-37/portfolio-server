@@ -5,6 +5,7 @@ module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { category, skill, description } = request.body;
   //
+
   try {
     const findExistSkill = await Skill.findOne({
       user: email,
@@ -27,9 +28,8 @@ module.exports = async function (request, reply) {
       .status(201)
       .send({ success: true, msg: "Skill Add Successfully" });
   } catch (error) {
-    console.log(error);
-    // return reply
-    //   .status(500)
-    //   .send({ success: false, msg: "Internal Server Error" });
+    return reply
+      .status(500)
+      .send({ success: false, msg: "Internal Server Error" });
   }
 };

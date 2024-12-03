@@ -1,0 +1,19 @@
+meta {
+  name: add education
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/add-education
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  education-image: @file(D:\images\canyon-9215914_1280.jpg)
+}

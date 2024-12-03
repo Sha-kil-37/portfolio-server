@@ -6,6 +6,22 @@ meta {
 
 post {
   url: {{baseUrl}}/admin/add-experience
-  body: none
-  auth: none
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "companyName": "Tech Solutions Inc.",
+    "position": [
+      "Frontend Developer",
+      "React Specialist"
+    ],
+    "duration": "June 2020 - August 2023",
+    "description": "Developed and maintained dynamic web applications using React.js, ensured cross-browser compatibility, and collaborated with design and backend teams to enhance user experience."
+  }
 }
