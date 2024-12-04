@@ -1,0 +1,31 @@
+meta {
+  name: update education
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/admin/update-education?id=674fe04a85644d0e87ce55d6
+  body: multipartForm
+  auth: bearer
+}
+
+params:query {
+  id: 674fe04a85644d0e87ce55d6
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  : 
+  : 
+  : 
+  : 
+  education-image: @file(D:\images\flower-9189857_1280.jpg)
+}

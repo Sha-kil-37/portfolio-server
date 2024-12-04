@@ -420,6 +420,28 @@ function adminRouter(fastify, options, done) {
     ],
     handler: require("../handler/cud/education/addEducation.js"),
   });
+  // ADMIN EDUCATION UPDATE ROUTE
+  fastify.put("/update-education", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("education-image"),
+    ],
+    handler: require("../handler/cud/education/updateEducation.js"),
+  });
+  // ADMIN EDUCATION DELETE ROUTE
+  fastify.delete("/delete-education", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks//auth/checkAuth.js"),
+    handler: require("../handler/cud/education/deleteEducation.js"),
+  });
   // education route end
 
   done();
