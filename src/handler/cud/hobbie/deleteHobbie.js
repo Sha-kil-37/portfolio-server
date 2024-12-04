@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const Skill = require("../../../model/skills/skill.model");
+const Hobbie = require("../../../model/hobbie/hobbie.model");
+
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;
@@ -9,10 +10,10 @@ module.exports = async function (request, reply) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-    await Skill.deleteOne({ _id: id, user: email });
+    await Hobbie.deleteOne({ _id: id, user: email });
     return reply.status(200).send({
       success: true,
-      msg: "Skill Delete Successfully",
+      msg: "Hobbie Delete Successfully",
     });
   } catch (error) {
     return reply.status(500).send({

@@ -1,33 +1,33 @@
-const Skill = require("../../../model/skills/skill.model");
+const Hobbie = require("../../../model/hobbie/hobbie.model");
 //
 module.exports = async function (request, reply) {
   //
   const { email } = request.headers;
-  const { category, skill, description } = request.body;
+  const { name, iconClass, description } = request.body;
   //
-
   try {
-    const findExistSkill = await Skill.findOne({
+    const findExistHobbie = await Hobbie.findOne({
       user: email,
-      skill: skill,
+      name: name,
     });
-    if (findExistSkill !== null) {
+    if (findExistHobbie !== null) {
       return reply.status(400).send({
         success: false,
-        msg: "Skill Already Exist",
+        msg: "Hobbie Already Exist",
       });
     }
-    const newSkill = new Skill({
-      category: category,
-      skill: skill,
+    const newHobbie = new Hobbie({
+      name: name,
+      iconClass: iconClass,
       description: description,
       user: email,
     });
-    await newSkill.save();
+    await newHobbie.save();
     return reply
       .status(201)
-      .send({ success: true, msg: "Skill Add Successfully" });
+      .send({ success: true, msg: "Hobbie Add Successfully" });
   } catch (error) {
+    console.log(error);
     return reply
       .status(500)
       .send({ success: false, msg: "Internal Server Error" });

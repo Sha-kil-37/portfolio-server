@@ -552,7 +552,7 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/cud/theme/updateTheme.js"),
   });
   // ADMIN THEME DELETE
-  fastify.delete("/delete-theme",{
+  fastify.delete("/delete-theme", {
     schema: {
       querystring: {
         type: "object",
@@ -564,75 +564,73 @@ function adminRouter(fastify, options, done) {
     },
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/cud/theme/deleteTheme.js"),
-  })
+  });
   // theme route end
-
- //  ADMIN HOBBIE ADD ROUTE
-//  fastify.post("/add-hobbie", {
-//   schema: {
-//     body: {
-//       type: "object",
-//       required: ["name", "iconURL", "description","description"],
-//       properties: {
-//         name: {
-//           type: "string",
-//         },
-//         iconURL: {
-//           type: "string",
-//         },
-//         description: {
-//           type: "string",
-//         },
-//       },
-//     },
-//   },
-//   preHandler: require("../hooks/auth/checkAuth.js"),
-//   handler: require("../handler/cud/hobbie/addHobbie.js"),
-// });
-// ADMIN SKILL UPDATE ROUTE
-// fastify.put("/update-skill", {
-//   schema: {
-//     querystring: {
-//       type: "object",
-//       properties: {
-//         id: { type: "string" },
-//       },
-//       required: ["id"], // Ensure 'id' is provided
-//     },
-//     body: {
-//       type: "object",
-//       required: ["category", "skill", "description"],
-//       properties: {
-//         category: {
-//           type: "string",
-//         },
-//         skill: {
-//           type: "string",
-//         },
-//         description: {
-//           type: "string",
-//         },
-//       },
-//     },
-//   },
-//   preHandler: require("../hooks/auth/checkAuth.js"),
-//   handler: require("../handler/cud/skill/updateSkill.js"),
-// });
-// // ADMIN SKILL DELETE ROUTE
-// fastify.delete("/delete-skill", {
-//   schema: {
-//     querystring: {
-//       type: "object",
-//       properties: {
-//         id: { type: "string" },
-//       },
-//       required: ["id"], // Ensure 'id' is provided
-//     },
-//   },
-//   preHandler: require("../hooks/auth/checkAuth.js"),
-//   handler: require("../handler/cud/skill/deleteSkill.js"),
-// });
-
+  //  ADMIN HOBBIE ADD ROUTE
+  fastify.post("/add-hobbie", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["name", "iconClass", "description"],
+        properties: {
+          name: {
+            type: "string",
+          },
+          iconClass: {
+            type: "string",
+          },
+          description: {
+            type: "string",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/hobbie/addHobbie.js"),
+  });
+  // ADMIN HOBBIE UPDATE ROUTE
+  fastify.put("/update-hobbie", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+      body: {
+        type: "object",
+        required: ["name", "iconClass", "description"],
+        properties: {
+          name: {
+            type: "string",
+          },
+          iconClass: {
+            type: "string",
+          },
+          description: {
+            type: "string",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/hobbie/updateHobbie.js"),
+  });
+  // // ADMIN HOBBIE DELETE ROUTE
+  fastify.delete("/delete-hobbie", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/hobbie/deleteHobbie.js"),
+  });
 
   // hobbie route end
   //
