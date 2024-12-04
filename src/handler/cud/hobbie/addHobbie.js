@@ -33,5 +33,3 @@ module.exports = async function (request, reply) {
       .send({ success: false, msg: "Internal Server Error" });
   }
 };
-
-

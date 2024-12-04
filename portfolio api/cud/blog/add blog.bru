@@ -1,0 +1,27 @@
+meta {
+  name: add blog
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/add-blog
+  body: multipartForm
+  auth: bearer
+}
+
+headers {
+  Content-Type: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  title: Mastering CSS Grid Layout
+  slug: mastering-css-grid-layout
+  content: CSS Grid Layout is a game-changer for web developers, providing a powerful layout system that simplifies web design...
+  tags: ["css","tailwind css"]
+  blog-image: @file(D:\images\prayer-book-7842864_1280.jpg)
+}

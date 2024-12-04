@@ -1,28 +1,20 @@
-// EDUCATION DATA MODEL
+// HOBBIE DATA MODEL
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 //
-const educationSchema = new Schema(
+const hobbieSchema = new Schema(
   {
-    degree: {
+    name: {
       type: String,
       required: true,
     },
-    institution: {
+    iconURL: {
       type: String,
       required: true,
     },
     description: {
       type: String,
       required: true,
-    },
-    duration: {
-      type: String,
-      required: true,
-    },
-    imageURL: {
-      url: String,
-      public_id: String,
     },
     user: {
       type: String,
@@ -34,5 +26,5 @@ const educationSchema = new Schema(
 //
 
 //
-const Education = mongoose.model("education", educationSchema);
-module.exports = Education;
+const Hobbie = mongoose.model("hobbie", hobbieSchema);
+module.exports = Hobbie;

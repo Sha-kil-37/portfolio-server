@@ -1,0 +1,19 @@
+meta {
+  name: delete hobbie
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/admin/delete-hobbie?id=dfghgfh
+  body: none
+  auth: bearer
+}
+
+params:query {
+  id: dfghgfh
+}
+
+auth:bearer {
+  token: {{token}}
+}

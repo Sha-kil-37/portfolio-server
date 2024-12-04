@@ -1,0 +1,31 @@
+meta {
+  name: update blog
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/admin/update-blog?id=67502ba03d68b1bf15cd46bd
+  body: multipartForm
+  auth: bearer
+}
+
+params:query {
+  id: 67502ba03d68b1bf15cd46bd
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:multipart-form {
+  title: update 
+  slug: update blog
+  content: content CSS Grid Layout is a game-changer for web developers, providing a powerful layout system that simplifies web design...
+  tags: ["css","tailwind css"]
+  blog-image: @file(D:\images\3491172.png)
+}

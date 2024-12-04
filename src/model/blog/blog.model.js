@@ -1,24 +1,24 @@
-// EDUCATION DATA MODEL
+// BLOG DATA MODEL
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 //
-const educationSchema = new Schema(
+const blogSchema = new Schema(
   {
-    degree: {
+    title: {
       type: String,
       required: true,
     },
-    institution: {
+    slug: {
       type: String,
       required: true,
     },
-    description: {
+    content: {
       type: String,
       required: true,
     },
-    duration: {
-      type: String,
-      required: true,
+    tags: {
+      type: [String],
+      default: [],
     },
     imageURL: {
       url: String,
@@ -34,5 +34,5 @@ const educationSchema = new Schema(
 //
 
 //
-const Education = mongoose.model("education", educationSchema);
-module.exports = Education;
+const Blog = mongoose.model("blog", blogSchema);
+module.exports = Blog;

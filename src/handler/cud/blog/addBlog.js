@@ -1,15 +1,9 @@
-const Project = require("../../../model/projects/project.model");
+const Blog = require("../../../model/blog/blog.model");
+
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;
-  const {
-    title,
-    description,
-    frontEndTechnologies,
-    backEndTechnologies,
-    liveURL,
-    repoURL,
-  } = request.body;
+  const { title, slug, content, tags } = request.body;
   try {
     if (typeof request.file !== "object") {
       return reply.status(400).send({ success: false, msg: "File Require" });
@@ -20,72 +14,58 @@ module.exports = async function (request, reply) {
         msg: "Title Required",
       });
     }
-    if (!description) {
+    if (!slug) {
       return reply.status(400).send({
         success: false,
-        msg: "Description Required",
+        msg: "Slug Required",
       });
     }
-    if (!frontEndTechnologies) {
+    if (!content) {
       return reply.status(400).send({
         success: false,
-        msg: "FrontEndTechnologies Required",
+        msg: "Content Required",
       });
     }
-    if (!backEndTechnologies) {
+    if (!tags) {
       return reply.status(400).send({
         success: false,
-        msg: "BackEndTechnologies Required",
+        msg: "Tag Required",
       });
     }
-    if (!liveURL) {
-      return reply.status(400).send({
-        success: false,
-        msg: "Live Url Required",
-      });
-    }
-    if (!repoURL) {
-      return reply.status(400).send({
-        success: false,
-        msg: "Repo Url Required",
-      });
-    }
+
     // FIND EXISTING PROJECT BEFORE NEW CREATE
-    const findExistProject = await Project.findOne({
+    const findExistBlog = await Blog.findOne({
       user: email,
       title: title,
     });
-    if (findExistProject !== null) {
+    if (findExistBlog !== null) {
       return reply.status(400).send({
         success: false,
-        msg: "Project Already Exist",
+        msg: "Blog Already Exist",
       });
     }
     const publidId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
     const result = await this.cloudinary.uploader.upload(request.file.path, {
-      folder: "portfolio project",
+      folder: "portfolio blog",
       public_id: publidId,
     });
-    const newProject = new Project({
+    const newBlog = new Blog({
       title: title,
-      description: description,
-      frontEndTechnologies: frontEndTechnologies,
-      backEndTechnologies: backEndTechnologies,
-      liveURL: liveURL,
-      repoURL: repoURL,
+      slug: slug,
+      content: content,
+      tags: tags,
       imageURL: {
         url: result.secure_url,
         public_id: publidId,
       },
       user: email,
     });
-    await newProject.save();
+    await newBlog.save();
     return reply.status(201).send({
       success: true,
-      msg: "Project Add Successfully",
+      msg: "Blog Add Successfully",
     });
   } catch (error) {
-
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",
