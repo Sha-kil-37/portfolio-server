@@ -57,7 +57,7 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/auth/signIn.js"),
   });
   // ADMIN FORGOT PASS EMAIL VERIFICATION ROUTE
-  fastify.patch("/forgot-pass-email-verify", {
+  fastify.patch("/forgot-email-verify", {
     schema: {
       body: {
         type: "object",
@@ -74,7 +74,7 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/auth/forgotPasswordEmailVerify.js"),
   });
   // ADMIN FORGOT PASS CODE VERIFICATION ROUTE
-  fastify.post("/forgot-pass-code-verify", {
+  fastify.post("/forgot-code-verify", {
     schema: {
       body: {
         type: "object",
@@ -113,7 +113,7 @@ function adminRouter(fastify, options, done) {
   fastify.patch("/profile-upload", {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
-      upload.single("profile"),
+      upload.array('profiles', 3),
     ],
     handler: require("../handler/auth/profileUpload.js"),
   });
@@ -122,7 +122,7 @@ function adminRouter(fastify, options, done) {
     schema: {
       body: {
         type: "object",
-        required: ["name", "title", "age"],
+        required: ["name", "title", "age","about"],
         properties: {
           name: {
             type: "string",
@@ -135,6 +135,9 @@ function adminRouter(fastify, options, done) {
           age: {
             type: "string",
           },
+          about:{
+            type:"string"
+          }
         },
       },
     },
@@ -617,7 +620,7 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/cud/hobbie/updateHobbie.js"),
   });
-  // // ADMIN HOBBIE DELETE ROUTE
+// ADMIN HOBBIE DELETE ROUTE
   fastify.delete("/delete-hobbie", {
     schema: {
       querystring: {
@@ -631,7 +634,6 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/cud/hobbie/deleteHobbie.js"),
   });
-
   // hobbie route end
   //
 

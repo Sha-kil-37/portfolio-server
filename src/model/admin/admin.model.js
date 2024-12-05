@@ -25,10 +25,11 @@ const adminSchema = new Schema(
       type: String,
       default: null,
     },
-    image: {
+    about: {
       type: String,
       default: null,
     },
+    images: [{ url: String, public_id: String }],
     verifyCode: {
       type: String,
       default: null,

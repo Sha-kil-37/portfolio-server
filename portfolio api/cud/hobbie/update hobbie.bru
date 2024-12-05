@@ -5,15 +5,23 @@ meta {
 }
 
 put {
-  url: {{baseUrl}}/admin/update-hobbie?id=dfghfgh
+  url: {{baseUrl}}/admin/update-hobbie?id=67504f6e25a49ed570e78b4d
   body: json
   auth: bearer
 }
 
 params:query {
-  id: dfghfgh
+  id: 67504f6e25a49ed570e78b4d
 }
 
 auth:bearer {
   token: {{token}}
+}
+
+body:json {
+  {
+    "name":"watching funny video",
+    "iconClass":"fab fa-movie",
+    "description":"bakud jihian teriva"
+  }
 }
