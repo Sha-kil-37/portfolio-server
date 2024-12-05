@@ -13,7 +13,11 @@ fastify.register(require("@fastify/jwt"), {
   secret: process.env.TOKEN_SECRET,
 });
 // REGISTER MULTIPART FOR FORM DATA
-fastify.register(require("@fastify/multipart"));
+fastify.register(require("@fastify/multipart"), {
+  limits: {
+    fileSize: 10 * 1024 * 1024, // Limit file size to 10MB
+  },
+});
 // REGISTER CLOUDINARY
 fastify.register(cloudinary, {
   url: `cloudinary://${process.env.CLOUDINARY_API_KEY}:${process.env.CLOUDINARY_API_SECRET}@${process.env.CLOUDINARY_NAME}`,

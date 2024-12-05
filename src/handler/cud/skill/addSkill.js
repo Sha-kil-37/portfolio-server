@@ -3,7 +3,7 @@ const Skill = require("../../../model/skills/skill.model");
 module.exports = async function (request, reply) {
   //
   const { email } = request.headers;
-  const { category, skill, description } = request.body;
+  const { skill, description } = request.body;
   //
 
   try {
@@ -18,7 +18,6 @@ module.exports = async function (request, reply) {
       });
     }
     const newSkill = new Skill({
-      category: category,
       skill: skill,
       description: description,
       user: email,
@@ -33,5 +32,3 @@ module.exports = async function (request, reply) {
       .send({ success: false, msg: "Internal Server Error" });
   }
 };
-
-

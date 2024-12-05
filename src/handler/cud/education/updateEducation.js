@@ -38,7 +38,6 @@ module.exports = async function (request, reply) {
         msg: "Duration Required",
       });
     }
-
     // FIND EXIST PROJECT BEFORE UPDATE
     const findExistEducation = await Education.findOne({
       user: email,
@@ -53,14 +52,12 @@ module.exports = async function (request, reply) {
     // DELETE CLOUDINARY OLD IMAGE BEFORE UPDATE NEW IMAGE
     const findImageId = await Education.findOne({ user: email, _id: id });
     await this.cloudinary.uploader.destroy(
-      `${"portfolio education"}/${findImageId.imageURL.public_id}`
+      `${"portfolio-education"}/${findImageId.imageURL.public_id}`
     );
-
     // UPLOAD PROJECT IMAGE IN CLOUDINARY
-    const publicId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
     const result = await this.cloudinary.uploader.upload(request.file.path, {
-      folder: "portfolio education",
-      public_id: publicId,
+      folder: "portfolio-education",
+      public_id: request.file.originalname,
     });
     await Education.updateOne(
       {
@@ -75,7 +72,7 @@ module.exports = async function (request, reply) {
           duration: duration,
           imageURL: {
             url: result.secure_url,
-            public_id: publicId,
+            public_id: request.file.originalname,
           },
         },
       }

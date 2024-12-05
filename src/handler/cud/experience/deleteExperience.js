@@ -16,7 +16,7 @@ module.exports = async function (request, reply) {
     await Experience.deleteOne({ user: email, _id: id });
     return reply.status(200).send({
       success: true,
-      msg: "Footer Delete Successfully",
+      msg: "Experience Delete Successfully",
     });
   } catch (error) {
     return reply.status(500).send({

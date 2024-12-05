@@ -2,7 +2,7 @@ const Skill = require("../../../model/skills/skill.model");
 const mongoose = require("mongoose");
 //
 module.exports = async function (request, reply) {
-  const { category, skill, description } = request.body;
+  const { skill, description } = request.body;
   const { email } = request.headers;
   const { id } = request.query;
   try {
@@ -11,10 +11,7 @@ module.exports = async function (request, reply) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
     const existingSkill = await Skill.findOne({
-      // _id: id,
-      category: category,
       skill: skill,
-      description: description,
       user: email,
     });
     if (existingSkill !== null) {
@@ -25,7 +22,7 @@ module.exports = async function (request, reply) {
     }
     await Skill.updateOne(
       { _id: id, user: email },
-      { $set: { category: category, skill: skill, description: description } }
+      { $set: { skill: skill, description: description } }
     );
     return reply.status(200).send({
       success: true,

@@ -20,7 +20,7 @@ const educationSchema = new Schema(
       type: String,
       required: true,
     },
-    imageURL: {
+    image: {
       url: String,
       public_id: String,
     },

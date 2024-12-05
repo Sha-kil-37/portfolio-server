@@ -1,5 +1,4 @@
 const Education = require("../../../model/education/education.model");
-
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;
@@ -32,7 +31,6 @@ module.exports = async function (request, reply) {
         msg: "Duration Required",
       });
     }
-
     // FIND EXISTING EDUCATION BEFORE NEW CREATE
     const findExistEducation = await Education.findOne({
       user: email,
@@ -44,19 +42,19 @@ module.exports = async function (request, reply) {
         msg: "Education Already Exist",
       });
     }
-    const publidId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
     const result = await this.cloudinary.uploader.upload(request.file.path, {
-      folder: "portfolio education",
-      public_id: publidId,
+      folder: "portfolio-education",
+      public_id: request.file.originalname,
     });
+    console.log(result);
     const newEducation = new Education({
       degree: degree,
       description: description,
       institution: institution,
       duration: duration,
-      imageURL: {
+      image: {
         url: result.secure_url,
-        public_id: publidId,
+        public_id: result.public_id,
       },
       user: email,
     });

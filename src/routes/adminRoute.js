@@ -113,7 +113,7 @@ function adminRouter(fastify, options, done) {
   fastify.patch("/profile-upload", {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
-      upload.array('profiles', 3),
+      upload.array("profiles", 3),
     ],
     handler: require("../handler/auth/profileUpload.js"),
   });
@@ -122,7 +122,7 @@ function adminRouter(fastify, options, done) {
     schema: {
       body: {
         type: "object",
-        required: ["name", "title", "age","about"],
+        required: ["name", "title", "age", "about"],
         properties: {
           name: {
             type: "string",
@@ -135,9 +135,9 @@ function adminRouter(fastify, options, done) {
           age: {
             type: "string",
           },
-          about:{
-            type:"string"
-          }
+          about: {
+            type: "string",
+          },
         },
       },
     },
@@ -151,11 +151,8 @@ function adminRouter(fastify, options, done) {
     schema: {
       body: {
         type: "object",
-        required: ["category", "skill", "description"],
+        required: ["skill", "description"],
         properties: {
-          category: {
-            type: "string",
-          },
           skill: {
             type: "string",
           },
@@ -180,7 +177,7 @@ function adminRouter(fastify, options, done) {
       },
       body: {
         type: "object",
-        required: ["category", "skill", "description"],
+        required: ["skill", "description"],
         properties: {
           category: {
             type: "string",
@@ -216,7 +213,7 @@ function adminRouter(fastify, options, done) {
   fastify.post("/add-project", {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
-      upload.single("project-image"),
+      upload.array("projects",10),
     ],
     handler: require("../handler/cud/project/addProject.js"),
   });
@@ -620,7 +617,7 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/cud/hobbie/updateHobbie.js"),
   });
-// ADMIN HOBBIE DELETE ROUTE
+  // ADMIN HOBBIE DELETE ROUTE
   fastify.delete("/delete-hobbie", {
     schema: {
       querystring: {

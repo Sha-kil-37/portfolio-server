@@ -16,7 +16,7 @@ module.exports = async function (request, reply) {
       _id: id,
     });
     await this.cloudinary.uploader.destroy(
-      `${"portfolio education"}/${findImageId.imageURL.public_id}`
+      `${"portfolio-education"}/${findImageId.image.public_id}`
     );
     await Education.deleteOne({ _id: id, user: email });
     return reply.status(200).send({

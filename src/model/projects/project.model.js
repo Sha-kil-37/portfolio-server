@@ -12,12 +12,8 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
-    frontEndTechnologies: {
-      type: [String], // Array of strings to list frontend technologies
-      required: true,
-    },
-    backEndTechnologies: {
-      type: [String], // Array of strings to list backend technologies
+    technology: {
+      type: Array,
       required: true,
     },
     liveURL: {
@@ -28,11 +24,7 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
-    imageURL: {
-      url: String,
-      public_id: String,
-    },
-
+    images: [{ url: String, public_id: String }],
     user: {
       type: String,
       required: true,
