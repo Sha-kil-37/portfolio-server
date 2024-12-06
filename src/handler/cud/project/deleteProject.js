@@ -10,14 +10,17 @@ module.exports = async function (request, reply) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
     // DELETE CLOUDINARY PROJECT IMAGE BEFORE DELETE PROJECT
-    const findImageId = await Project.findOne({
+    const findImages = await Project.findOne({
       user: email,
       _id: id,
     });
-    await this.cloudinary.uploader.destroy(
-      `${"portfolio project"}/${findImageId.imageURL.public_id}`
-    );
+    //
+    findImages.images.map((image) => {
+      this.cloudinary.uploader.destroy(image.public_id);
+    });
+    //
     await Project.deleteOne({ _id: id, user: email });
+    //
     return reply.status(200).send({
       success: true,
       msg: "Project Delete Successfully",

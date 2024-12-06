@@ -82,7 +82,7 @@ module.exports = async function (request, reply) {
       msg: "Project Add Successfully",
     });
   } catch (error) {
-    console.log(error);
+
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",

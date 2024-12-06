@@ -221,7 +221,7 @@ function adminRouter(fastify, options, done) {
   fastify.put("/update-project", {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
-      upload.single("project-image"),
+      upload.array("projects",10),
     ],
     handler: require("../handler/cud/project/updateProject.js"),
   });

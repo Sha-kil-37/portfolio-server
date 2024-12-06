@@ -4,21 +4,17 @@ const Project = require("../../../model/projects/project.model");
 module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { id } = request.query;
-  const {
-    title,
-    description,
-    frontEndTechnologies,
-    backEndTechnologies,
-    liveURL,
-    repoURL,
-  } = request.body;
+  const { title, description, technology, liveURL, repoURL } = request.body;
+  //
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-
-    if (typeof request.file !== "object") {
-      return reply.status(400).send({ success: false, msg: "File Require" });
+    const files = await request.files;
+    if (!files || !Array.isArray(files) || files.length === 0) {
+      return reply
+        .status(400)
+        .send({ success: "false", msg: "Files Required" });
     }
     if (!title) {
       return reply.status(400).send({
@@ -32,18 +28,13 @@ module.exports = async function (request, reply) {
         msg: "Description Required",
       });
     }
-    if (!frontEndTechnologies) {
+    if (!technology) {
       return reply.status(400).send({
         success: false,
-        msg: "FrontEndTechnologies Required",
+        msg: "Technology Required",
       });
     }
-    if (!backEndTechnologies) {
-      return reply.status(400).send({
-        success: false,
-        msg: "BackEndTechnologies Required",
-      });
-    }
+
     if (!liveURL) {
       return reply.status(400).send({
         success: false,
@@ -67,18 +58,22 @@ module.exports = async function (request, reply) {
         msg: "Project Already Exist",
       });
     }
-    // DELETE CLOUDINARY OLD IMAGE BEFORE UPDATE NEW IMAGE
-    const findImageId = await Project.findOne({ user: email, _id: id });
-    await this.cloudinary.uploader.destroy(
-      `${"portfolio project"}/${findImageId.imageURL.public_id}`
+    //
+    // Upload each file to Cloudinary
+    const uploadPromises = files.map((file) =>
+      this.cloudinary.uploader.upload(file.path, {
+        folder: "portfolio-projects", // Cloudinary folder
+        public_id: file.originalname,
+      })
     );
+    // Wait for all uploads to complete
+    const uploadResults = await Promise.all(uploadPromises);
+    const images = uploadResults.map((image) => ({
+      url: image.secure_url,
+      public_id: image.public_id,
+    }));
 
-    // UPLOAD PROJECT IMAGE IN CLOUDINARY
-    const publicId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
-    const result = await this.cloudinary.uploader.upload(request.file.path, {
-      folder: "portfolio project",
-      public_id: publicId,
-    });
+    //
     await Project.updateOne(
       {
         _id: id,
@@ -88,14 +83,10 @@ module.exports = async function (request, reply) {
         $set: {
           title: title,
           description: description,
-          frontEndTechnologies: frontEndTechnologies,
-          backEndTechnologies: backEndTechnologies,
+          technology: technology,
           liveURL: liveURL,
           repoURL: repoURL,
-          imageURL: {
-            url: result.secure_url,
-            public_id: publicId,
-          },
+          images: images,
         },
       }
     );
@@ -104,7 +95,6 @@ module.exports = async function (request, reply) {
       msg: "Project Update Successfully",
     });
   } catch (error) {
-    
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",
