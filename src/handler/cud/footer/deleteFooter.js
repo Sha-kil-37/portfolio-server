@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Footer = require("../../../model/footer/footer.model");
-
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;

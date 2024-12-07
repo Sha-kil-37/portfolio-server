@@ -25,7 +25,7 @@ module.exports = async function (request, reply) {
     await newFooter.save();
     return reply.status(201).send({
       success: true,
-      msg: "Footer Create Successfully",
+      msg: "Add Footer Successfully",
     });
   } catch (error) {
     return reply.status(500).send({
