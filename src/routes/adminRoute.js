@@ -122,7 +122,7 @@ function adminRouter(fastify, options, done) {
     schema: {
       body: {
         type: "object",
-        required: ["name", "title", "age", "about"],
+        required: ["name", "title", "age", "about", "subTitle"],
         properties: {
           name: {
             type: "string",
@@ -131,6 +131,9 @@ function adminRouter(fastify, options, done) {
           title: {
             type: "string",
             pattern: "^[a-zA-Zà-ÿÀ-Ÿ'\\-\\s]+$",
+          },
+          subTitle: {
+            type: "string",
           },
           age: {
             type: "string",
@@ -213,7 +216,7 @@ function adminRouter(fastify, options, done) {
   fastify.post("/add-project", {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
-      upload.array("projects",10),
+      upload.array("projects", 10),
     ],
     handler: require("../handler/cud/project/addProject.js"),
   });
@@ -221,7 +224,7 @@ function adminRouter(fastify, options, done) {
   fastify.put("/update-project", {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
-      upload.array("projects",10),
+      upload.array("projects", 10),
     ],
     handler: require("../handler/cud/project/updateProject.js"),
   });
@@ -632,8 +635,38 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/cud/hobbie/deleteHobbie.js"),
   });
   // hobbie route end
-  //
-
+  
+  // ADMIN META ROUTE
+  fastify.post("/add-meta", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("meta-image"),
+    ],
+    handler: require("../handler/cud/meta/addMeta.js"),
+  });
+  // ADMIN META UPDATE ROUTE
+  fastify.put("/update-meta",{
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("meta-image"),
+    ],
+    handler: require("../handler/cud/meta/updateMeta.js"),
+  })
+  // meta route end
+  // ADMIN META DELETE
+  fastify.delete("/delete-meta", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks//auth/checkAuth.js"),
+    handler: require("../handler/cud/meta/deleteMeta.js"),
+  });
   done();
 }
 module.exports = adminRouter;

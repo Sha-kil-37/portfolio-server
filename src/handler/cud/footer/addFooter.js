@@ -4,6 +4,7 @@ module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { contactInfo, socialLinks, navigationLinks, copyrightText } =
     request.body;
+    // 
   try {
     const findExistFooter = await Footer.findOne({
       user: email,

@@ -2,7 +2,7 @@ const Admin = require("../../model/admin/admin.model");
 
 module.exports = async function (request, reply) {
   const { email } = request.headers;
-  const { name, title, age, about } = request.body;
+  const { name, title, age, about, subTitle } = request.body;
   try {
     // FIND ADMIN
     const findAdmin = await Admin.findOne({
@@ -22,6 +22,7 @@ module.exports = async function (request, reply) {
         $set: {
           name: name,
           title: title,
+          subTitle: subTitle,
           age: age,
           about: about,
         },
