@@ -4,13 +4,15 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node server.js",
+    "test": "jest",
     "dev": "nodemon server.js"
   },
   "author": "shakil",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "fastify": "^5.1.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.7"
   },
   "dependencies": {
@@ -20,7 +22,6 @@
     "@fastify/rate-limit": "^10.2.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
-    "fastify": "^5.1.0",
     "fastify-cloudinary": "^2.0.0",
     "fastify-multer": "^2.0.3",
     "mongoose": "^8.8.1",
