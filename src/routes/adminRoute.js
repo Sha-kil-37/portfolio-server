@@ -1,3 +1,4 @@
+const Cv = require("../model/cv/cv.model.js");
 const upload = require("../utils/multer/multer.js");
 //
 function adminRouter(fastify, options, done) {
@@ -635,7 +636,7 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/cud/hobbie/deleteHobbie.js"),
   });
   // hobbie route end
-  
+
   // ADMIN META ROUTE
   fastify.post("/add-meta", {
     preHandler: [
@@ -645,14 +646,13 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/cud/meta/addMeta.js"),
   });
   // ADMIN META UPDATE ROUTE
-  fastify.put("/update-meta",{
+  fastify.put("/update-meta", {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
       upload.single("meta-image"),
     ],
     handler: require("../handler/cud/meta/updateMeta.js"),
-  })
-  // meta route end
+  });
   // ADMIN META DELETE
   fastify.delete("/delete-meta", {
     schema: {
@@ -667,6 +667,43 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks//auth/checkAuth.js"),
     handler: require("../handler/cud/meta/deleteMeta.js"),
   });
+  // meta route end
+  // ADMIN CV ADD
+  fastify.post("/add-cv", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("cv-pdf"),
+    ],
+    handler: require("../handler/cud/cv/addCv.js"),
+  });
+  // ADMIN CV UPDATE
+  fastify.put("/update-cv", {
+    preHandler: [
+      require("../hooks/auth/checkAuth.js"),
+      upload.single("cv-pdf"),
+    ],
+    handler: require("../handler/cud/cv/updateCv.js"),
+  });
+  // ADMIN CV DELETE
+  fastify.delete("/delete-cv", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/cv/deleteCv.js"),
+  });
+
+  //   const cv = await Cv.find();
+  //   return reply.send(cv);
+  // });
+
+  //
   done();
 }
 module.exports = adminRouter;

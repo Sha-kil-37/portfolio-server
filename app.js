@@ -7,7 +7,11 @@ fastify.register(require("@fastify/rate-limit"), {
   max: 100,
   timeWindow: "1 minute",
 });
-
+// REGISTER CORS
+fastify.register(require("@fastify/cors"), {
+  // put your options here
+  origin: true,
+});
 // REGISTER JWT TOKEN
 fastify.register(require("@fastify/jwt"), {
   secret: process.env.TOKEN_SECRET,
