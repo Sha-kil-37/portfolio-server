@@ -26,7 +26,6 @@ fastify.register(require("@fastify/multipart"), {
 fastify.register(cloudinary, {
   url: `cloudinary://${process.env.CLOUDINARY_API_KEY}:${process.env.CLOUDINARY_API_SECRET}@${process.env.CLOUDINARY_NAME}`,
 });
-
 // REGISTER ADMIN ROUTE
 fastify.register(require("./src/routes/adminRoute"), {
   prefix: "/portfolio/api/v1/admin",
