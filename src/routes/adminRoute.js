@@ -9,7 +9,6 @@ const checkForgotPassCodeVerification = require("../hooks/auth/checkForgotPassCo
 const forgotPassCodeVerification = require("../handler/auth/forgotPassCodeVerification.js");
 const checkAuth = require("../hooks/auth/checkAuth.js");
 const changePass = require("../handler/auth/changePass.js");
-const changeProfile = require("../handler/auth/profileUpload.js");
 const profileUpdate = require("../handler/auth/profileUpdate.js");
 const addSkill = require("../handler/cud/skill/addSkill.js");
 const updateSkill = require("../handler/cud/skill/updateSkill.js");
@@ -42,6 +41,7 @@ const addCv = require("../handler/cud/cv/addCv.js");
 const updateCv = require("../handler/cud/cv/updateCv.js");
 const deleteCv = require("../handler/cud/cv/deleteCv.js");
 const helloAdmin = require("../handler/auth/helloAdmin.js");
+const profileUpload = require("../handler/auth/profileUpload.js");
 //
 function adminRouter(fastify, options, done) {
   // ADMIN WELCOME ROUTE
@@ -151,7 +151,7 @@ function adminRouter(fastify, options, done) {
   // ADMIN PROFILE CHANGE
   fastify.patch("/profile-upload", {
     preHandler: [checkAuth, upload.array("profiles", 3)],
-    handler: changeProfile,
+    handler: profileUpload,
   });
   // ADMIN PROFILE UPDATE
   fastify.patch("/profile-update", {
