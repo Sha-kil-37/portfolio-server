@@ -46,7 +46,6 @@ module.exports = async function (request, reply) {
       folder: "portfolio-education",
       public_id: request.file.originalname,
     });
-
     const newEducation = new Education({
       degree: degree,
       description: description,

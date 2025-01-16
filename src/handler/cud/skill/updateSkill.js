@@ -10,24 +10,27 @@ module.exports = async function (request, reply) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-    const existingSkill = await Skill.findOne({
+    const findExistSkill = await Skill.findOne({
       skill: skill,
       user: email,
+      _id: id,
     });
-    if (existingSkill !== null) {
+    if (findExistSkill !== null) {
       return reply.status(400).send({
         success: false,
         msg: "Skill Already Exist",
       });
+    } else {
+      await Skill.updateOne(
+        { _id: id, user: email },
+        { $set: { skill: skill, description: description } }
+      );
+      return reply.status(200).send({
+        success: true,
+        msg: "Update Skill Successfully",
+      });
     }
-    await Skill.updateOne(
-      { _id: id, user: email },
-      { $set: { skill: skill, description: description } }
-    );
-    return reply.status(200).send({
-      success: true,
-      msg: "Update Skill Successfully",
-    });
+    //
   } catch (error) {
     return reply.status(500).send({
       success: false,

@@ -5,7 +5,6 @@ module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { skill, description } = request.body;
   //
-
   try {
     const findExistSkill = await Skill.findOne({
       user: email,

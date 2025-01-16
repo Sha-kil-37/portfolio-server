@@ -1,10 +1,8 @@
 const Theme = require("../../../model/theme/theme.model");
-
 //
 module.exports = async function (request, reply) {
   //
   const { email } = request.headers;
-
   const {
     name,
     isActive,

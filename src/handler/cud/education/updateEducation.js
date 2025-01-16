@@ -51,40 +51,43 @@ module.exports = async function (request, reply) {
     }
     // DELETE CLOUDINARY OLD IMAGE BEFORE UPDATE NEW IMAGE
     const findImageId = await Education.findOne({ user: email, _id: id });
-    await this.cloudinary.uploader.destroy(
-      `${"portfolio-education"}/${findImageId.imageURL.public_id}`
+    const deleteExistingImage = await this.cloudinary.uploader.destroy(
+      `${"portfolio-education"}/${findImageId.image.public_id}`
     );
-    // UPLOAD PROJECT IMAGE IN CLOUDINARY
-    const result = await this.cloudinary.uploader.upload(request.file.path, {
-      folder: "portfolio-education",
-      public_id: request.file.originalname,
-    });
-    await Education.updateOne(
-      {
-        _id: id,
-        user: email,
-      },
-      {
-        $set: {
-          degree: degree,
-          institution: institution,
-          description: description,
-          duration: duration,
-          imageURL: {
-            url: result.secure_url,
-            public_id: request.file.originalname,
-          },
-        },
-      }
-    );
-    return reply.status(200).send({
-      success: true,
-      msg: "Education Update Successfully",
-    });
+    console.log(deleteExistingImage);
+
+    // UPLOAD EDUCATION IMAGE IN CLOUDINARY
+    // const result = await this.cloudinary.uploader.upload(request.file.path, {
+    //   folder: "portfolio-education",
+    //   public_id: request.file.originalname,
+    // });
+    // await Education.updateOne(
+    //   {
+    //     _id: id,
+    //     user: email,
+    //   },
+    //   {
+    //     $set: {
+    //       degree: degree,
+    //       institution: institution,
+    //       description: description,
+    //       duration: duration,
+    //       imageURL: {
+    //         url: result.secure_url,
+    //         public_id: request.file.originalname,
+    //       },
+    //     },
+    //   }
+    // );
+    // return reply.status(200).send({
+    //   success: true,
+    //   msg: "Education Update Successfully",
+    // });
   } catch (error) {
-    return reply.status(500).send({
-      success: false,
-      msg: "Internal Server Error",
-    });
+    console.log(error);
+    // return reply.status(500).send({
+    //   success: false,
+    //   msg: "Internal Server Error",
+    // });
   }
 };

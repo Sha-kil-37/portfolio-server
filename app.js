@@ -1,3 +1,4 @@
+'use strict'
 require("dotenv").config();
 const cloudinary = require("fastify-cloudinary");
 // REGISTER FASTIFY LOGGER

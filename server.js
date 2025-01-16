@@ -1,3 +1,4 @@
+'use strict'
 require("dotenv").config();
 const fastify = require("./app");
 const dbConnection = require("./src/config/db/dbConnection");
