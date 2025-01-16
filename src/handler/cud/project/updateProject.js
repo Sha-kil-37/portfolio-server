@@ -34,7 +34,6 @@ module.exports = async function (request, reply) {
         msg: "Technology Required",
       });
     }
-
     if (!liveURL) {
       return reply.status(400).send({
         success: false,
@@ -58,7 +57,19 @@ module.exports = async function (request, reply) {
         msg: "Project Already Exist",
       });
     }
-    //
+    const getExistProject = await Project.findOne({
+      _id: id,
+      user: email,
+    });
+    const getExistProjectImagesArray = getExistProject.images.map(
+      (item) => item.public_id
+    );
+    // delete before each image from cloudinary
+    const deletePromise = getExistProjectImagesArray.map((public_id) =>
+      this.cloudinary.uploader.destroy(public_id)
+    );
+    // Wait for all delete to complete
+    await Promise.all(deletePromise);
     // Upload each file to Cloudinary
     const uploadPromises = files.map((file) =>
       this.cloudinary.uploader.upload(file.path, {
@@ -66,13 +77,12 @@ module.exports = async function (request, reply) {
         public_id: file.originalname,
       })
     );
-    // Wait for all uploads to complete
+    // // Wait for all uploads to complete
     const uploadResults = await Promise.all(uploadPromises);
     const images = uploadResults.map((image) => ({
       url: image.secure_url,
       public_id: image.public_id,
     }));
-
     //
     await Project.updateOne(
       {

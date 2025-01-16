@@ -15,9 +15,9 @@ module.exports = async function (request, reply) {
       _id: id,
     });
     //
-    findImages.images.map((image) => {
-      this.cloudinary.uploader.destroy(image.public_id);
-    });
+    findImages.images.map((image) =>
+      this.cloudinary.uploader.destroy(image.public_id)
+    );
     //
     await Project.deleteOne({ _id: id, user: email });
     //

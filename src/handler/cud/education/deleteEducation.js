@@ -15,8 +15,10 @@ module.exports = async function (request, reply) {
       user: email,
       _id: id,
     });
-
-    await this.cloudinary.uploader.destroy(findImageId.image.public_id);
+    const result = await this.cloudinary.uploader.destroy(
+      findImageId.image.public_id
+    );
+    
     await Education.deleteOne({ _id: id, user: email });
     return reply.status(200).send({
       success: true,

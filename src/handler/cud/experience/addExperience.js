@@ -1,5 +1,6 @@
-const Experience = require("../../../model/experience/experience.model");
 
+const Experience = require("../../../model/experience/experience.model"); // experience data model
+// 
 module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { companyName, position, duration, description } = request.body;

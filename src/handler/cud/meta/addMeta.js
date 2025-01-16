@@ -16,12 +16,10 @@ module.exports = async function (request, reply) {
         msg: "Title Required",
       });
     }
-  
-
     // FIND EXISTING EDUCATION BEFORE NEW CREATE
     const findExistMeta = await Meta.findOne({
       user: email,
-      // title: title,
+     
     });
     if (findExistMeta !== null) {
       return reply.status(400).send({

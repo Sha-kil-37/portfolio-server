@@ -29,9 +29,15 @@ module.exports = async function (request, reply) {
         msg: "Meta Already Exist",
       });
     }
-
+    const findExistMetaFavicon = await Meta.findOne({
+      _id: id,
+      user: email,
+    });
     // DELETE CLOUDINARY OLD IMAGE BEFORE UPDATE NEW META
-    await this.cloudinary.api.delete_resources_by_prefix("portfolio-meta");
+    const test = await this.cloudinary.uploader.destroy(
+      findExistMetaFavicon.favicon.public_id
+    );
+    console.log(test);
     // UPLOAD META IMAGE IN CLOUDINARY
     const result = await this.cloudinary.uploader.upload(request.file.path, {
       folder: "portfolio-meta",
