@@ -1,4 +1,5 @@
 //
+'use strict'
 const mongoose = require("mongoose");
 const Footer = require("../../../model/footer/footer.model");
 //
@@ -11,6 +12,8 @@ module.exports = async function (request, reply) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
+
+    //
     await Footer.updateOne(
       {
         user: email,

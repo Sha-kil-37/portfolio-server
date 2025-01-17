@@ -1,3 +1,5 @@
+'use strict'
+
 const Admin = require("../../model/admin/admin.model");
 //
 require("dotenv").config();

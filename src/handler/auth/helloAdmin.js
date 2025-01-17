@@ -1,3 +1,4 @@
+'use strict'
 module.exports = async function (request, reply) {
   try {
     return reply.status(200).send({

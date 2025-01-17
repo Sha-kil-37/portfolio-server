@@ -1,3 +1,4 @@
+'use strict'
 const Education = require("../../../model/education/education.model");
 //
 module.exports = async function (request, reply) {

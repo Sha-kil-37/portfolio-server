@@ -1,3 +1,4 @@
+'use strict'
 const Admin = require("../../model/admin/admin.model");
 const bcrypt = require("bcryptjs");
 module.exports = async function (request, reply) {

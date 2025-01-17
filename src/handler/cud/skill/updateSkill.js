@@ -1,3 +1,4 @@
+'use strict'
 const Skill = require("../../../model/skills/skill.model");
 const mongoose = require("mongoose");
 //

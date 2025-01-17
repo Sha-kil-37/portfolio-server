@@ -1,4 +1,5 @@
 //
+'use strict'
 const mongoose = require("mongoose");
 const Cv = require("../../../model/cv/cv.model");
 module.exports = async function (request, reply) {

@@ -1,3 +1,4 @@
+'use strict'
 const mongoose = require("mongoose");
 const Education = require("../../../model/education/education.model");
 

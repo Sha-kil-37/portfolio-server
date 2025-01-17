@@ -1,4 +1,5 @@
 //
+'use strict'
 const mongoose = require("mongoose");
 const Education = require("../../../model/education/education.model");
 module.exports = async function (request, reply) {
@@ -15,10 +16,8 @@ module.exports = async function (request, reply) {
       user: email,
       _id: id,
     });
-    const result = await this.cloudinary.uploader.destroy(
-      findImageId.image.public_id
-    );
-    
+    await this.cloudinary.uploader.destroy(findImageId.image.public_id);
+
     await Education.deleteOne({ _id: id, user: email });
     return reply.status(200).send({
       success: true,

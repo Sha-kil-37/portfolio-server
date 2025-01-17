@@ -1,3 +1,4 @@
+'use strict'
 module.exports = async function (request, reply) {
   //
   const { email } = request.body;

@@ -1,3 +1,4 @@
+'use strict'
 const mongoose = require("mongoose");
 const Footer = require("../../../model/footer/footer.model");
 //

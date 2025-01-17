@@ -1,4 +1,4 @@
-
+'use strict'
 const Experience = require("../../../model/experience/experience.model"); // experience data model
 // 
 module.exports = async function (request, reply) {

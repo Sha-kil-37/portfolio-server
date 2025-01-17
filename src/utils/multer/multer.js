@@ -1,4 +1,5 @@
 //
+'use strict'
 const multer = require("fastify-multer");
 const path = require("path");
 //

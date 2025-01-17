@@ -1,3 +1,4 @@
+'use strict'
 const Theme = require("../../../model/theme/theme.model");
 //
 module.exports = async function (request, reply) {

@@ -1,3 +1,4 @@
+'use strict'
 const Hobbie = require("../../../model/hobbie/hobbie.model");
 //
 module.exports = async function (request, reply) {

@@ -1,3 +1,4 @@
+'use strict'
 const mongoose = require("mongoose");
 const Meta = require("../../../model/meta/meta.model");
 //
@@ -34,10 +35,9 @@ module.exports = async function (request, reply) {
       user: email,
     });
     // DELETE CLOUDINARY OLD IMAGE BEFORE UPDATE NEW META
-    const test = await this.cloudinary.uploader.destroy(
+    await this.cloudinary.uploader.destroy(
       findExistMetaFavicon.favicon.public_id
     );
-    console.log(test);
     // UPLOAD META IMAGE IN CLOUDINARY
     const result = await this.cloudinary.uploader.upload(request.file.path, {
       folder: "portfolio-meta",
@@ -63,6 +63,7 @@ module.exports = async function (request, reply) {
       msg: "Education Update Successfully",
     });
   } catch (error) {
+    console.log(error);
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",

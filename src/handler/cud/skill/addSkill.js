@@ -1,3 +1,4 @@
+'use strict'
 const Skill = require("../../../model/skills/skill.model");
 //
 module.exports = async function (request, reply) {

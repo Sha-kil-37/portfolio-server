@@ -1,5 +1,5 @@
+'use strict'
 const Meta = require("../../../model/meta/meta.model");
-
 //
 module.exports = async function (request, reply) {
   //

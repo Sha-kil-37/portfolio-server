@@ -1,6 +1,8 @@
+'use strict'
+
 const mongoose = require("mongoose");
 const Meta = require("../../../model/meta/meta.model");
-// 
+//
 module.exports = async function (request, reply) {
   //
   const { email } = request.headers;
@@ -10,8 +12,13 @@ module.exports = async function (request, reply) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-    // 
-    await this.cloudinary.api.delete_resources_by_prefix("portfolio-meta");
+    //
+    const findExistFavicon = await Meta.findOne({
+      _id: id,
+      user: email,
+    });
+    // delete cloudinary meta favicon image before delete meta data
+    await this.cloudinary.uploader.destroy(findExistFavicon.favicon.public_id);
     await Meta.deleteOne({ _id: id, user: email });
     return reply.status(200).send({
       success: true,

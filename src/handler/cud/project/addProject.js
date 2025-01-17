@@ -1,3 +1,5 @@
+
+'use strict'
 const Project = require("../../../model/projects/project.model");
 //
 module.exports = async function (request, reply) {

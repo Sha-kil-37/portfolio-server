@@ -1,3 +1,4 @@
+'use strict'
 require("dotenv").config();
 module.exports = async function (request, reply) {
   const { name, email, password } = request.body;

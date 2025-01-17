@@ -1,4 +1,5 @@
 //
+'use strict'
 const mongoose = require("mongoose");
 const Blog = require("../../../model/blog/blog.model");
 //
@@ -11,14 +12,12 @@ module.exports = async function (request, reply) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-    // DELETE CLOUDINARY PROJECT IMAGE BEFORE DELETE Education
+    // DELETE CLOUDINARY PROJECT IMAGE BEFORE DELETE EDUCATION
     const findImageId = await Blog.findOne({
       user: email,
       _id: id,
     });
-    await this.cloudinary.uploader.destroy(
-      `${"portfolio blog"}/${findImageId.imageURL.public_id}`
-    );
+    await this.cloudinary.uploader.destroy(findImageId.imageURL.public_id);
     await Blog.deleteOne({ _id: id, user: email });
     return reply.status(200).send({
       success: true,

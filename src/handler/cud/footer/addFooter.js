@@ -1,3 +1,4 @@
+'use strict'
 const Footer = require("../../../model/footer/footer.model");
 //
 module.exports = async function (request, reply) {
@@ -9,6 +10,7 @@ module.exports = async function (request, reply) {
     const findExistFooter = await Footer.findOne({
       user: email,
     });
+    
     if (findExistFooter !== null) {
       return reply.status(400).send({
         success: false,

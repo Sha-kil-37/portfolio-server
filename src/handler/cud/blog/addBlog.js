@@ -1,5 +1,5 @@
-const Blog = require("../../../model/blog/blog.model");
-
+"use strict";
+const Blog = require("../../../model/blog/blog.model"); // blog data model
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;
@@ -32,7 +32,6 @@ module.exports = async function (request, reply) {
         msg: "Tag Required",
       });
     }
-
     // FIND EXISTING PROJECT BEFORE NEW CREATE
     const findExistBlog = await Blog.findOne({
       user: email,
@@ -44,19 +43,22 @@ module.exports = async function (request, reply) {
         msg: "Blog Already Exist",
       });
     }
-    const publidId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
-    const result = await this.cloudinary.uploader.upload(request.file.path, {
-      folder: "portfolio blog",
-      public_id: publidId,
-    });
+    // upload blog image in cloudinary
+    const uploadBlogImage = await this.cloudinary.uploader.upload(
+      request.file.path,
+      {
+        folder: "portfolio-blog",
+        public_id: request.file.originalname,
+      }
+    );
     const newBlog = new Blog({
       title: title,
       slug: slug,
       content: content,
-      tags: tags,
+      tags: JSON.parse(tags),
       imageURL: {
-        url: result.secure_url,
-        public_id: publidId,
+        url: uploadBlogImage.secure_url,
+        public_id: uploadBlogImage.public_id,
       },
       user: email,
     });

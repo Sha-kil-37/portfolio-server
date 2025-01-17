@@ -1,22 +1,15 @@
+"use strict";
 const mongoose = require("mongoose");
-const Blog = require("../../../model/blog/blog.model");
-
+const Blog = require("../../../model/blog/blog.model"); // blog data model
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { id } = request.query;
-  const {
-    title,
-    slug,
-    content,
-    tags,
-    
-  } = request.body;
+  const { title, slug, content, tags } = request.body;
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-
     if (typeof request.file !== "object") {
       return reply.status(400).send({ success: false, msg: "File Require" });
     }
@@ -44,7 +37,7 @@ module.exports = async function (request, reply) {
         msg: "Tags Required",
       });
     }
-  
+
     // FIND EXIST PROJECT BEFORE UPDATE
     const findExistBlog = await Blog.findOne({
       user: email,
@@ -56,18 +49,22 @@ module.exports = async function (request, reply) {
         msg: "Blog Already Exist",
       });
     }
-    // DELETE CLOUDINARY OLD IMAGE BEFORE UPDATE NEW IMAGE
-    const findImageId = await Blog.findOne({ user: email, _id: id });
+
+    const findExistBlogImage = await Blog.findOne({ user: email, _id: id });
+
+    // delete existing blog image before update new blog
     await this.cloudinary.uploader.destroy(
-      `${"portfolio blog"}/${findImageId.imageURL.public_id}`
+      findExistBlogImage.imageURL.public_id
+    );
+    // upload blog image cloudinary
+    const uploadBlogImage = await this.cloudinary.uploader.upload(
+      request.file.path,
+      {
+        folder: "portfolio-blog",
+        public_id: request.file.originalname,
+      }
     );
 
-    // UPLOAD PROJECT IMAGE IN CLOUDINARY
-    const publicId = `${Date.now()}-${Math.random().toString(36).substring(2)}`;
-    const result = await this.cloudinary.uploader.upload(request.file.path, {
-      folder: "portfolio blog",
-      public_id: publicId,
-    });
     await Blog.updateOne(
       {
         _id: id,
@@ -76,12 +73,12 @@ module.exports = async function (request, reply) {
       {
         $set: {
           title: title,
-          slug:slug,
-          content:content,
-          tags:tags,
+          slug: slug,
+          content: content,
+          tags: JSON.parse(tags),
           imageURL: {
-            url: result.secure_url,
-            public_id: publicId,
+            url: uploadBlogImage.secure_url,
+            public_id: uploadBlogImage.public_id,
           },
         },
       }

@@ -1,5 +1,5 @@
+'use strict'
 const Admin = require("../../model/admin/admin.model");
-
 module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { name, title, age, about, subTitle } = request.body;
