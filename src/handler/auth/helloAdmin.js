@@ -3,7 +3,7 @@ module.exports = async function (request, reply) {
   try {
     return reply.status(200).send({
       success: true,
-      msg: "hello admin",
+      msg: "hello admin!",
     });
   } catch (error) {
     return reply.status(500).send({

@@ -1,0 +1,105 @@
+TAP version 14
+{"level":30,"time":1737134160551,"pid":5676,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","req":{"method":"POST","url":"/portfolio/api/v1/admin/sign-up","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1737134170574,"pid":5676,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","res":{"statusCode":500},"responseTime":10022.263499997556,"msg":"request completed"}
+{
+  raw: {
+    res: Response {
+      _events: [36m[Object: null prototype][39m,
+      _eventsCount: [33m1[39m,
+      _maxListeners: [90mundefined[39m,
+      outputData: [],
+      outputSize: [33m0[39m,
+      writable: [33mtrue[39m,
+      destroyed: [33mtrue[39m,
+      _last: [33mfalse[39m,
+      chunkedEncoding: [33mfalse[39m,
+      shouldKeepAlive: [33mtrue[39m,
+      maxRequestsOnConnectionReached: [33mfalse[39m,
+      _defaultKeepAlive: [33mtrue[39m,
+      useChunkedEncodingByDefault: [33mtrue[39m,
+      sendDate: [33mtrue[39m,
+      _removedConnection: [33mfalse[39m,
+      _removedContLen: [33mfalse[39m,
+      _removedTE: [33mfalse[39m,
+      strictContentLength: [33mfalse[39m,
+      _contentLength: [32m'47'[39m,
+      _hasBody: [33mtrue[39m,
+      _trailer: [32m''[39m,
+      finished: [33mtrue[39m,
+      _headerSent: [33mtrue[39m,
+      _closed: [33mfalse[39m,
+      socket: [36m[Writable][39m,
+      _header: [32m'HTTP/1.1 500 Internal Server Error\r\n'[39m +
+        [32m'vary: Origin\r\n'[39m +
+        [32m'x-ratelimit-limit: 100\r\n'[39m +
+        [32m'x-ratelimit-remaining: 99\r\n'[39m +
+        [32m'x-ratelimit-reset: 60\r\n'[39m +
+        [32m'content-type: application/json; charset=utf-8\r\n'[39m +
+        [32m'content-length: 47\r\n'[39m +
+        [32m'Date: Fri, 17 Jan 2025 17:16:10 GMT\r\n'[39m +
+        [32m'Connection: keep-alive\r\n'[39m +
+        [32m'\r\n'[39m,
+      _keepAliveTimeout: [33m0[39m,
+      _onPendingData: [36m[Function: nop][39m,
+      req: [36m[Request][39m,
+      _sent100: [33mfalse[39m,
+      _expect_continue: [33mfalse[39m,
+      _lightMyRequest: [36m[Object][39m,
+      _promiseCallback: [33mtrue[39m,
+      statusCode: [33m500[39m,
+      statusMessage: [32m'Internal Server Error'[39m,
+      [[32mSymbol(shapeMode)[39m]: [33mfalse[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m,
+      [[32mSymbol(kBytesWritten)[39m]: [33m0[39m,
+      [[32mSymbol(kNeedDrain)[39m]: [33mfalse[39m,
+      [[32mSymbol(corked)[39m]: [33m0[39m,
+      [[32mSymbol(kOutHeaders)[39m]: [36m[Object: null prototype][39m,
+      [[32mSymbol(errored)[39m]: [1mnull[22m,
+      [[32mSymbol(kHighWaterMark)[39m]: [33m16384[39m,
+      [[32mSymbol(kRejectNonStandardBodyWrites)[39m]: [33mfalse[39m
+    },
+    req: Request {
+      _events: [36m[Object][39m,
+      _readableState: [36m[ReadableState][39m,
+      _maxListeners: [90mundefined[39m,
+      url: [32m'/portfolio/api/v1/admin/sign-up'[39m,
+      aborted: [33mfalse[39m,
+      httpVersionMajor: [33m1[39m,
+      httpVersionMinor: [33m1[39m,
+      httpVersion: [32m'1.1'[39m,
+      method: [32m'POST'[39m,
+      headers: [36m[Object][39m,
+      rawHeaders: [36m[Array][39m,
+      socket: [36m[MockSocket][39m,
+      _lightMyRequest: [36m[Object][39m,
+      _read: [36m[Function: readEverythingElse][39m,
+      _eventsCount: [33m2[39m,
+      [[32mSymbol(shapeMode)[39m]: [33mtrue[39m,
+      [[32mSymbol(kCapture)[39m]: [33mfalse[39m
+    }
+  },
+  headers: {
+    vary: [32m'Origin'[39m,
+    [32m'x-ratelimit-limit'[39m: [32m'100'[39m,
+    [32m'x-ratelimit-remaining'[39m: [32m'99'[39m,
+    [32m'x-ratelimit-reset'[39m: [32m'60'[39m,
+    [32m'content-type'[39m: [32m'application/json; charset=utf-8'[39m,
+    [32m'content-length'[39m: [32m'47'[39m,
+    date: [32m'Fri, 17 Jan 2025 17:16:10 GMT'[39m,
+    connection: [32m'keep-alive'[39m
+  },
+  statusCode: [33m500[39m,
+  statusMessage: [32m'Internal Server Error'[39m,
+  trailers: {},
+  cookies: [36m[Getter][39m,
+  rawPayload: <Buffer 7b 22 73 75 63 63 65 73 73 22 3a 66 61 6c 73 65 2c 22 6d 73 67 22 3a 22 49 6e 74 65 72 6e 61 6c 20 53 65 72 76 65 72 20 45 72 72 6f 72 22 7d>,
+  payload: [32m'{"success":false,"msg":"Internal Server Error"}'[39m,
+  body: [32m'{"success":false,"msg":"Internal Server Error"}'[39m,
+  json: [36m[Function: parseJsonPayload][39m,
+  stream: [36m[Function: streamPayload][39m
+}
+# Subtest: POST `/portfolio/api/v1/admin/sign-up`
+    1..0
+ok 1 - POST `/portfolio/api/v1/admin/sign-up` # time=10467.349ms
+
+1..1
