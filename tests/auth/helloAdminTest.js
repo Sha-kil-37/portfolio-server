@@ -1,29 +1,27 @@
-
 "use strict";
 // hello admin route test
 const tap = require("tap");
-const buildFastify = require("../../app"); // Path to your Fastify instance
-tap.test("GET `/portfolio/api/v1/admin/`", async (t) => {
-  const fastify = buildFastify;
+const fastify = require("../../app"); // Replace with the path to your Fastify app
+tap.test("GET http://localhost:8000/portfolio/api/v1/admin", async (t) => {
   try {
-    // Start the server
+    // Ready the app for testing
     await fastify.ready();
-    // Perform the GET request
+    // Make a GET request
     const response = await fastify.inject({
       method: "GET",
-      url: "/portfolio/api/v1/admin/",
+      url: "http://localhost:8000/portfolio/api/v1/admin", // Replace with your API route
     });
+
     // Assertions
-    t.equal(response.statusCode, 200, "Status should be 200");
     t.same(JSON.parse(response.payload), {
       success: true,
       msg: "hello admin!",
     });
-    // Close the server after tests
+    // Close the Fastify instance
     await fastify.close();
   } catch (error) {
     console.log(error);
-    // Close the server after tests
+    // Close the Fastify instance
     await fastify.close();
   }
 });

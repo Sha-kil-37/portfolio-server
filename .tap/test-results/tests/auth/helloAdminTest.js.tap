@@ -1,10 +1,9 @@
 TAP version 14
-{"level":30,"time":1737134160553,"pid":3384,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","req":{"method":"GET","url":"/portfolio/api/v1/admin/","host":"localhost:80","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
-# Subtest: GET `/portfolio/api/v1/admin/`
-    ok 1 - Status should be 200
-    ok 2 - should be equivalent
-    1..2
-ok 1 - GET `/portfolio/api/v1/admin/` # time=453.222ms
+{"level":30,"time":1737193941345,"pid":12108,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","req":{"method":"GET","url":"/portfolio/api/v1/admin","host":"localhost:8000","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# Subtest: GET http://localhost:8000/portfolio/api/v1/admin
+    ok 1 - should be equivalent
+    1..1
+ok 1 - GET http://localhost:8000/portfolio/api/v1/admin # time=410.609ms
 
-{"level":30,"time":1737134160557,"pid":3384,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","res":{"statusCode":200},"responseTime":3.865199998021126,"msg":"request completed"}
+{"level":30,"time":1737193941350,"pid":12108,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","res":{"statusCode":200},"responseTime":3.739599999040365,"msg":"request completed"}
 1..1
