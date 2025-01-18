@@ -1,8 +1,8 @@
 {
-  "date": "2025-01-18T09:52:20.052Z",
+  "date": "2025-01-18T17:01:39.021Z",
   "argv": [
     "C:\\Program Files\\nodejs\\node.exe",
-    "E:\\portfolio\\server\\tests\\auth\\helloAdminTest.js"
+    "E:\\portfolio\\server\\__test__\\auth\\helloAdmin.test.js"
   ],
   "execArgv": [
     "--import=file:///E:/portfolio/server/node_modules/@isaacs/ts-node-temp-fork-for-pr-2009/import.mjs",
@@ -12,12 +12,12 @@
   ],
   "NODE_OPTIONS": "\"--import=file:///E:/portfolio/server/node_modules/@tapjs/processinfo/dist/esm/import.mjs\"",
   "cwd": "E:\\portfolio\\server",
-  "pid": 12108,
-  "ppid": 2028,
+  "pid": 19460,
+  "ppid": 20216,
   "parent": null,
-  "uuid": "e492ed6a-f371-4205-822c-272a3e9a022d",
+  "uuid": "72bb4d12-b060-4580-bc2d-8fd9c9888620",
   "files": [
-    "E:\\portfolio\\server\\tests\\auth\\helloAdminTest.js",
+    "E:\\portfolio\\server\\__test__\\auth\\helloAdmin.test.js",
     "E:\\portfolio\\server\\node_modules\\@isaacs\\ts-node-temp-fork-for-pr-2009\\import.mjs",
     "E:\\portfolio\\server\\node_modules\\@isaacs\\ts-node-temp-fork-for-pr-2009\\import-loader.mjs",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\import.mjs",
@@ -49,21 +49,21 @@
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\file-exists.js",
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\find-dep-package.js",
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\to-file-url.js",
-    "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\dist\\esm\\parse.js",
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\resolve-dependency-export.js",
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\resolve-package-import.js",
+    "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\dist\\esm\\parse.js",
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\read-json.js",
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\find-star-match.js",
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\walk-up-path\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\index.js",
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\glob.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\has-magic.js",
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\glob.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\ignore.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\pattern.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\assert-valid-pattern.js",
-    "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\ast.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\escape.js",
+    "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\ast.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\unescape.js",
     "E:\\portfolio\\server\\node_modules\\path-scurry\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\walker.js",
@@ -223,14 +223,17 @@
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\to-file-url.js": [
       "E:\\portfolio\\server\\node_modules\\resolve-import\\src\\to-file-url.ts"
     ],
-    "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\dist\\esm\\parse.js": [
-      "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\src\\parse.ts"
-    ],
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\resolve-dependency-export.js": [
       "E:\\portfolio\\server\\node_modules\\resolve-import\\src\\resolve-dependency-export.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\resolve-package-import.js": [
       "E:\\portfolio\\server\\node_modules\\resolve-import\\src\\resolve-package-import.ts"
+    ],
+    "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\dist\\esm\\parse.js": [
+      "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\src\\parse.ts"
+    ],
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\index.js": [
+      "E:\\portfolio\\server\\node_modules\\glob\\src\\index.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\read-json.js": [
       "E:\\portfolio\\server\\node_modules\\resolve-import\\src\\read-json.ts"
@@ -238,20 +241,17 @@
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\find-star-match.js": [
       "E:\\portfolio\\server\\node_modules\\resolve-import\\src\\find-star-match.ts"
     ],
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\index.js": [
-      "E:\\portfolio\\server\\node_modules\\glob\\src\\index.ts"
-    ],
     "E:\\portfolio\\server\\node_modules\\walk-up-path\\dist\\esm\\index.js": [
       "E:\\portfolio\\server\\node_modules\\walk-up-path\\src\\index.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\index.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\index.ts"
     ],
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\glob.js": [
-      "E:\\portfolio\\server\\node_modules\\glob\\src\\glob.ts"
-    ],
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\has-magic.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\src\\has-magic.ts"
+    ],
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\glob.js": [
+      "E:\\portfolio\\server\\node_modules\\glob\\src\\glob.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\ignore.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\src\\ignore.ts"
@@ -262,11 +262,11 @@
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\assert-valid-pattern.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\assert-valid-pattern.ts"
     ],
-    "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\ast.js": [
-      "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\ast.ts"
-    ],
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\escape.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\escape.ts"
+    ],
+    "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\ast.js": [
+      "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\ast.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\unescape.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\unescape.ts"
@@ -290,9 +290,9 @@
       "E:\\portfolio\\server\\node_modules\\path-scurry\\node_modules\\lru-cache\\src\\index.ts"
     ]
   },
-  "root": "e492ed6a-f371-4205-822c-272a3e9a022d",
-  "externalID": "tests/auth/helloAdminTest.js",
+  "root": "72bb4d12-b060-4580-bc2d-8fd9c9888620",
+  "externalID": "__test__/auth/helloAdmin.test.js",
   "code": 0,
   "signal": null,
-  "runtime": 1304.9417
+  "runtime": 1409.3401
 }

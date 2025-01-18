@@ -1,0 +1,51 @@
+{
+  "result": [
+    {
+      "scriptId": "712",
+      "url": "file:///E:/portfolio/server/app.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 1064,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
+    },
+    {
+      "scriptId": "1312",
+      "url": "file:///E:/portfolio/server/src/routes/adminRoute.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 19551,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        },
+        {
+          "functionName": "adminRouter",
+          "ranges": [
+            {
+              "startOffset": 24,
+              "endOffset": 19508,
+              "count": 0
+            }
+          ],
+          "isBlockCoverage": false
+        }
+      ]
+    }
+  ],
+  "timestamp": 34333.625064,
+  "source-map-cache": {}
+}

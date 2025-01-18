@@ -1,0 +1,9 @@
+TAP version 14
+{"level":30,"time":1737210628464,"pid":2028,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","req":{"method":"GET","url":"/portfolio/api/v1/admin","host":"localhost:8000","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+# Subtest: GET http://localhost:8000/portfolio/api/v1/admin
+    ok 1 - should be equivalent
+    1..1
+ok 1 - GET http://localhost:8000/portfolio/api/v1/admin # time=501.415ms
+
+{"level":30,"time":1737210628470,"pid":2028,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","res":{"statusCode":200},"responseTime":4.681200001388788,"msg":"request completed"}
+1..1

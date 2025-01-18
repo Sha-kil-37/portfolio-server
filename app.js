@@ -1,8 +1,8 @@
-'use strict'
+"use strict";
 require("dotenv").config();
 const cloudinary = require("fastify-cloudinary");
 // REGISTER FASTIFY LOGGER
-const fastify = require("fastify")({ logger: true });
+const fastify = require("fastify")({ logger: true, connectionTimeout: 10000 });
 // REGISTER RATE LIMITE
 fastify.register(require("@fastify/rate-limit"), {
   max: 100,

@@ -22,6 +22,7 @@ module.exports = async function (request, reply) {
       .status(201)
       .send({ success: true, msg: "Admin Created Successfully" });
   } catch (error) {
+ 
     if (error.code === 11000) {
       return reply
         .status(400)

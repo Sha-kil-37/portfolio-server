@@ -9,6 +9,7 @@ module.exports = async function (request, reply) {
         .send({ success: false, msg: "Invalid Credential" });
     }
   } catch (error) {
+    
     return reply
       .status(500)
       .send({ success: false, msg: "Internal Server Error" });
