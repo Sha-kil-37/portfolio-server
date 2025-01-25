@@ -1,4 +1,3 @@
-
 // ADMIN FOOTER DATA MODEL
 const mongoose = require("mongoose");
 //

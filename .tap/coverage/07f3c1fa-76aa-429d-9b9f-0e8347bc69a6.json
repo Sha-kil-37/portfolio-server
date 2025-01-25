@@ -44,8 +44,25 @@
           "isBlockCoverage": false
         }
       ]
+    },
+    {
+      "scriptId": "1313",
+      "url": "file:///E:/portfolio/server/src/model/admin/admin.model.js",
+      "functions": [
+        {
+          "functionName": "",
+          "ranges": [
+            {
+              "startOffset": 0,
+              "endOffset": 947,
+              "count": 1
+            }
+          ],
+          "isBlockCoverage": true
+        }
+      ]
     }
   ],
-  "timestamp": 34333.625064,
+  "timestamp": 2785.680598,
   "source-map-cache": {}
 }

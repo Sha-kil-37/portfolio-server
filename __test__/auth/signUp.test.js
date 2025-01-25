@@ -1,37 +1,84 @@
-"use strict";
-// hello admin route test
-const tap = require("tap");
-const faker = require("@faker-js/faker");
-const fastify = require("../../app"); // Replace with the path to your Fastify app
-const mock = require("mock-import");
+const tap = require('tap');
+const { faker } = require('@faker-js/faker');
+const { build } = require('../../app');
+const Admin = require('../../src/model/admin/admin.model');
+require("dotenv").config();
+tap.test('signup tests', async (t) => {
+  const app = await build();
 
-tap.test(
-  "POST http://localhost:8000/portfolio/api/v1/admin/sign-in",
-  async (t) => {
-    const name = faker.name.findName();
-    const email = faker.internet.email();
-    const password = faker.internet.password();
-    // Ready the app for testing
-    await fastify.ready();
-    t.teardown(() => {
-      fastify.close();
+  t.teardown(async () => {
+    await app.close();
+    await Admin.deleteMany({});
+  });
+
+  await t.test('should create new admin successfully', async (t) => {
+    const payload = {
+      name: faker.person.fullName(),
+      email: process.env.OWNER_GMAIL,
+      password: faker.internet.password()
+    };
+
+    const response = await app.inject({
+      method: 'POST',
+      url: 'http://localhost:8000/portfolio/api/v1/admin/sign-up',
+      payload
     });
-    const stub = mock.mockImport("createAdmin", {
-      name,
-      email,
-      password,
+
+    t.equal(response.statusCode, 201);
+    t.same(JSON.parse(response.payload), {
+      success: true,
+      msg: 'Admin Created Successfully'
     });
-    const response = await fastify.inject({
-      method: "POST",
-      url: "http://localhost:8000/portfolio/api/v1/admin/sign-up",
-      payload: {
-        name: name,
-        email: email,
-        password: password,
-      },
+  });
+
+  await t.test('should return error if admin already exists', async (t) => {
+    const payload = {
+      name: faker.person.fullName(),
+      email: process.env.OWNER_GMAIL,
+      password: faker.internet.password()
+    };
+
+    // First signup
+    await app.inject({
+      method: 'POST',
+      url: 'http://localhost:8000/portfolio/api/v1/admin/sign-up',
+      payload
     });
-    console.log(response);
-;
-   
-  }
-);
+
+    // Try to signup again with same email
+    const response = await app.inject({
+      method: 'POST',
+      url: 'http://localhost:8000/portfolio/api/v1/admin/sign-up',
+      payload
+    });
+
+    t.equal(response.statusCode, 400);
+    t.same(JSON.parse(response.payload), {
+      success: false,
+      msg: 'Admin Already  Exist'
+    });
+  });
+
+  await t.test('should return error for invalid email', async (t) => {
+    const payload = {
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+      password: faker.internet.password()
+    };
+
+    const response = await app.inject({
+      method: 'POST',
+      url: 'http://localhost:8000/portfolio/api/v1/admin/sign-up',
+      payload
+    });
+
+    t.equal(response.statusCode, 400);
+    t.same(JSON.parse(response.payload), {
+      success: false,
+      msg: 'Invalid Credential'
+    });
+  });
+});
+
+
+

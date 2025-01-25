@@ -115,7 +115,7 @@
           "ranges": [
             {
               "startOffset": 0,
-              "endOffset": 1072,
+              "endOffset": 1069,
               "count": 1
             }
           ],
@@ -126,7 +126,7 @@
           "ranges": [
             {
               "startOffset": 129,
-              "endOffset": 1069,
+              "endOffset": 1066,
               "count": 0
             }
           ],
@@ -1543,6 +1543,6 @@
       ]
     }
   ],
-  "timestamp": 34333.988983,
+  "timestamp": 2785.745262,
   "source-map-cache": {}
 }

@@ -1,6 +1,6 @@
-// 
-'use strict'
-// 
+//
+"use strict";
+//
 function adminRouter(fastify, options, done) {
   // ADMIN WELCOME ROUTE
   fastify.get("/", require("../handler/auth/helloAdmin.js"));
@@ -416,7 +416,6 @@ function adminRouter(fastify, options, done) {
     preHandler: [
       require("../hooks/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("education-image"),
-      
     ],
     handler: require("../handler/cud/education/addEducation.js"),
   });
@@ -632,7 +631,6 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/cud/hobbie/deleteHobbie.js"),
   });
   // hobbie route end
-
   // ADMIN META ROUTE
   fastify.post("/add-meta", {
     preHandler: [
@@ -694,12 +692,66 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/auth/checkAuth.js"),
     handler: require("../handler/cud/cv/deleteCv.js"),
   });
-
-  //   const cv = await Cv.find();
-  //   return reply.send(cv);
-  // });
-  // how can i add design and color in my vs code terminal 
-  //
+  //ADMIN TOOL ADD ROUTE
+  fastify.post("/add-tool", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["toolName", "iconClass"],
+        properties: {
+          toolName: {
+            type: "string",
+          },
+          iconClass: {
+            type: "string",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/tool/addTool.js"),
+  });
+  // ADMIN TOOL UPDATE ROUTE
+  fastify.put("/update-tool", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+      body: {
+        type: "object",
+        required: ["toolName", "iconClass"],
+        properties: {
+          toolName: {
+            type: "string",
+          },
+          iconClass: {
+            type: "string",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/tool/updateTool.js"),
+  });
+  // ADMIN TOOL DELETE ROUTE
+  fastify.delete("/delete-tool", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks/auth/checkAuth.js"),
+    handler: require("../handler/cud/tool/deleteTool.js"),
+  });
+  // tool route end
   done();
 }
 module.exports = adminRouter;

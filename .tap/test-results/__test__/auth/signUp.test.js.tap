@@ -1,0 +1,48 @@
+TAP version 14
+# Subtest: signup tests
+    not ok 1 - build is not a function
+      ---
+      stack: |
+        Test.<anonymous> (__test__/auth/signUp.test.js:7:21)
+      at:
+        fileName: __test__\auth\signUp.test.js
+        lineNumber: 7
+        columnNumber: 21
+        typeName: Test
+        methodName: <anonymous>
+        functionName: Test.<anonymous>
+      type: TypeError
+      tapCaught: returnedPromiseRejection
+      source: "require(\"dotenv\").config();\r
+      
+        tap.test('signup tests', async (t) => {\r
+      
+        \  const app = await build();\r
+      
+        --------------------^
+      
+        \r
+      
+        \  t.teardown(async () => {\n"
+      ...
+    
+    1..1
+not ok 1 - signup tests # time=19.996ms
+  ---
+  at:
+    fileName: __test__\auth\signUp.test.js
+    lineNumber: 6
+    columnNumber: 5
+    typeName: Object
+  source: "const Admin = require('../../src/model/admin/admin.model');\r
+  
+    require(\"dotenv\").config();\r
+  
+    tap.test('signup tests', async (t) => {\r
+  
+    ----^
+  
+    \  const app = await build();\n"
+  ...
+
+1..1

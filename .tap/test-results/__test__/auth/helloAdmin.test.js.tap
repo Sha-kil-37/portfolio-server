@@ -1,9 +1,9 @@
 TAP version 14
-{"level":30,"time":1737219700402,"pid":19460,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","req":{"method":"GET","url":"/portfolio/api/v1/admin","host":"localhost:8000","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
+{"level":30,"time":1737814883969,"pid":16672,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","req":{"method":"GET","url":"/portfolio/api/v1/admin","host":"localhost:8000","remoteAddress":"127.0.0.1"},"msg":"incoming request"}
 # Subtest: GET http://localhost:8000/portfolio/api/v1/admin
     ok 1 - should be equivalent
     1..1
-ok 1 - GET http://localhost:8000/portfolio/api/v1/admin # time=442.333ms
+ok 1 - GET http://localhost:8000/portfolio/api/v1/admin # time=437.472ms
 
-{"level":30,"time":1737219700406,"pid":19460,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","res":{"statusCode":200},"responseTime":3.4873000010848045,"msg":"request completed"}
+{"level":30,"time":1737814883974,"pid":16672,"hostname":"DESKTOP-8JNUS80","reqId":"req-1","res":{"statusCode":200},"responseTime":4.018499999772757,"msg":"request completed"}
 1..1

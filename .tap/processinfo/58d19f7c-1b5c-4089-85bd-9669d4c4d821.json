@@ -1,8 +1,8 @@
 {
-  "date": "2025-01-18T17:01:39.029Z",
+  "date": "2025-01-25T14:21:22.627Z",
   "argv": [
     "C:\\Program Files\\nodejs\\node.exe",
-    "E:\\portfolio\\server\\__test__\\auth\\signUp.test.js"
+    "E:\\portfolio\\server\\__test__\\auth\\helloAdmin.test.js"
   ],
   "execArgv": [
     "--import=file:///E:/portfolio/server/node_modules/@isaacs/ts-node-temp-fork-for-pr-2009/import.mjs",
@@ -12,12 +12,12 @@
   ],
   "NODE_OPTIONS": "\"--import=file:///E:/portfolio/server/node_modules/@tapjs/processinfo/dist/esm/import.mjs\"",
   "cwd": "E:\\portfolio\\server",
-  "pid": 9800,
-  "ppid": 20216,
+  "pid": 16672,
+  "ppid": 6016,
   "parent": null,
-  "uuid": "003642bf-27b4-4963-8cce-3acd0c3c2152",
+  "uuid": "58d19f7c-1b5c-4089-85bd-9669d4c4d821",
   "files": [
-    "E:\\portfolio\\server\\__test__\\auth\\signUp.test.js",
+    "E:\\portfolio\\server\\__test__\\auth\\helloAdmin.test.js",
     "E:\\portfolio\\server\\node_modules\\@isaacs\\ts-node-temp-fork-for-pr-2009\\import.mjs",
     "E:\\portfolio\\server\\node_modules\\@isaacs\\ts-node-temp-fork-for-pr-2009\\import-loader.mjs",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\import.mjs",
@@ -26,8 +26,8 @@
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\resolve-import\\dist\\esm\\is-relative-require.js",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\export-line.js",
-    "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\munge-mocks.js",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\resolve-mock-entry-point.js",
+    "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\munge-mocks.js",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\service-key.js",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\dist\\esm\\call-site-like.js",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\stack\\dist\\esm\\require-resolve.js",
@@ -57,25 +57,83 @@
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\walk-up-path\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\index.js",
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\has-magic.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\glob.js",
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\has-magic.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\ignore.js",
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\pattern.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\assert-valid-pattern.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\ast.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\escape.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\unescape.js",
     "E:\\portfolio\\server\\node_modules\\path-scurry\\dist\\esm\\index.js",
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\pattern.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\walker.js",
-    "E:\\portfolio\\server\\node_modules\\path-scurry\\node_modules\\lru-cache\\dist\\esm\\index.js",
-    "E:\\portfolio\\server\\node_modules\\minipass\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\brace-expressions.js",
+    "E:\\portfolio\\server\\node_modules\\minipass\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\processor.js",
+    "E:\\portfolio\\server\\node_modules\\path-scurry\\node_modules\\lru-cache\\dist\\esm\\index.js",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\loader.mjs",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\hooks.mjs",
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\mock-service-client.js",
     "E:\\portfolio\\server\\app.js",
-    "E:\\portfolio\\server\\src\\routes\\adminRoute.js"
+    "E:\\portfolio\\server\\src\\routes\\adminRoute.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\helloAdmin.js",
+    "E:\\portfolio\\server\\src\\hooks\\auth\\checkSignUp.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\signUp.js",
+    "E:\\portfolio\\server\\src\\model\\admin\\admin.model.js",
+    "E:\\portfolio\\server\\src\\hooks\\auth\\checkSignIn.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\signIn.js",
+    "E:\\portfolio\\server\\src\\hooks\\auth\\checkForgotPassEmailVerify.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\forgotPasswordEmailVerify.js",
+    "E:\\portfolio\\server\\src\\config\\mail\\mailTemplate.js",
+    "E:\\portfolio\\server\\src\\config\\mail\\mailSender.js",
+    "E:\\portfolio\\server\\src\\config\\mail\\mailConfig.js",
+    "E:\\portfolio\\server\\src\\hooks\\auth\\checkForgotPassCodeVerification.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\forgotPassCodeVerification.js",
+    "E:\\portfolio\\server\\src\\hooks\\auth\\checkAuth.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\changePass.js",
+    "E:\\portfolio\\server\\src\\utils\\multer\\multer.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\profileUpload.js",
+    "E:\\portfolio\\server\\src\\handler\\auth\\profileUpdate.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\skill\\addSkill.js",
+    "E:\\portfolio\\server\\src\\model\\skills\\skill.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\skill\\updateSkill.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\skill\\deleteSkill.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\project\\addProject.js",
+    "E:\\portfolio\\server\\src\\model\\projects\\project.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\project\\updateProject.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\project\\deleteProject.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\footer\\addFooter.js",
+    "E:\\portfolio\\server\\src\\model\\footer\\footer.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\footer\\updateFooter.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\footer\\deleteFooter.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\experience\\addExperience.js",
+    "E:\\portfolio\\server\\src\\model\\experience\\experience.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\experience\\updateExperience.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\experience\\deleteExperience.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\education\\addEducation.js",
+    "E:\\portfolio\\server\\src\\model\\education\\education.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\education\\updateEducation.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\education\\deleteEducation.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\blog\\addBlog.js",
+    "E:\\portfolio\\server\\src\\model\\blog\\blog.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\blog\\updateBlog.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\blog\\deleteBlog.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\theme\\addTheme.js",
+    "E:\\portfolio\\server\\src\\model\\theme\\theme.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\theme\\updateTheme.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\theme\\deleteTheme.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\hobbie\\addHobbie.js",
+    "E:\\portfolio\\server\\src\\model\\hobbie\\hobbie.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\hobbie\\updateHobbie.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\hobbie\\deleteHobbie.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\meta\\addMeta.js",
+    "E:\\portfolio\\server\\src\\model\\meta\\meta.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\meta\\updateMeta.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\meta\\deleteMeta.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\cv\\addCv.js",
+    "E:\\portfolio\\server\\src\\model\\cv\\cv.model.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\cv\\updateCv.js",
+    "E:\\portfolio\\server\\src\\handler\\cud\\cv\\deleteCv.js"
   ],
   "sources": {
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\import.mjs": [
@@ -96,11 +154,11 @@
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\export-line.js": [
       "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\src\\export-line.ts"
     ],
-    "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\munge-mocks.js": [
-      "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\src\\munge-mocks.ts"
-    ],
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\resolve-mock-entry-point.js": [
       "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\src\\resolve-mock-entry-point.ts"
+    ],
+    "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\munge-mocks.js": [
+      "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\src\\munge-mocks.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\dist\\esm\\service-key.js": [
       "E:\\portfolio\\server\\node_modules\\@tapjs\\mock\\src\\service-key.ts"
@@ -189,17 +247,14 @@
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\index.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\index.ts"
     ],
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\has-magic.js": [
-      "E:\\portfolio\\server\\node_modules\\glob\\src\\has-magic.ts"
-    ],
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\glob.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\src\\glob.ts"
     ],
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\has-magic.js": [
+      "E:\\portfolio\\server\\node_modules\\glob\\src\\has-magic.ts"
+    ],
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\ignore.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\src\\ignore.ts"
-    ],
-    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\pattern.js": [
-      "E:\\portfolio\\server\\node_modules\\glob\\src\\pattern.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\assert-valid-pattern.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\assert-valid-pattern.ts"
@@ -216,25 +271,28 @@
     "E:\\portfolio\\server\\node_modules\\path-scurry\\dist\\esm\\index.js": [
       "E:\\portfolio\\server\\node_modules\\path-scurry\\src\\index.ts"
     ],
+    "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\pattern.js": [
+      "E:\\portfolio\\server\\node_modules\\glob\\src\\pattern.ts"
+    ],
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\walker.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\src\\walker.ts"
-    ],
-    "E:\\portfolio\\server\\node_modules\\path-scurry\\node_modules\\lru-cache\\dist\\esm\\index.js": [
-      "E:\\portfolio\\server\\node_modules\\path-scurry\\node_modules\\lru-cache\\src\\index.ts"
-    ],
-    "E:\\portfolio\\server\\node_modules\\minipass\\dist\\esm\\index.js": [
-      "E:\\portfolio\\server\\node_modules\\minipass\\src\\index.ts"
     ],
     "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\dist\\esm\\brace-expressions.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\node_modules\\minimatch\\src\\brace-expressions.ts"
     ],
+    "E:\\portfolio\\server\\node_modules\\minipass\\dist\\esm\\index.js": [
+      "E:\\portfolio\\server\\node_modules\\minipass\\src\\index.ts"
+    ],
     "E:\\portfolio\\server\\node_modules\\glob\\dist\\esm\\processor.js": [
       "E:\\portfolio\\server\\node_modules\\glob\\src\\processor.ts"
+    ],
+    "E:\\portfolio\\server\\node_modules\\path-scurry\\node_modules\\lru-cache\\dist\\esm\\index.js": [
+      "E:\\portfolio\\server\\node_modules\\path-scurry\\node_modules\\lru-cache\\src\\index.ts"
     ]
   },
-  "root": "003642bf-27b4-4963-8cce-3acd0c3c2152",
-  "externalID": "__test__/auth/signUp.test.js",
-  "code": 1,
+  "root": "58d19f7c-1b5c-4089-85bd-9669d4c4d821",
+  "externalID": "__test__/auth/helloAdmin.test.js",
+  "code": 0,
   "signal": null,
-  "runtime": 1041.7664
+  "runtime": 1353.9456
 }
