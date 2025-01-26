@@ -31,5 +31,8 @@ fastify.register(cloudinary, {
 fastify.register(require("./src/routes/adminRoute"), {
   prefix: "/portfolio/api/v1/admin",
 });
-//
+// REGISTER VISITOR ROUTE
+fastify.register(require("./src/routes/visitorRoute"), {
+  prefix: "/portfolio/api/v1/visitor",
+});
 module.exports = fastify;

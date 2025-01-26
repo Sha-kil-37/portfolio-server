@@ -1,9 +1,9 @@
-//
+
 "use strict";
 //
 function adminRouter(fastify, options, done) {
   // ADMIN WELCOME ROUTE
-  fastify.get("/", require("../handler/auth/helloAdmin.js"));
+  fastify.get("/", require("../handler/admin/auth/helloAdmin.js"));
 
   // ADMIN SIGNUP ROUTE
   fastify.post("/sign-up", {
@@ -28,8 +28,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkSignUp.js"),
-    handler: require("../handler/auth/signUp.js"),
+    preHandler: require("../hooks/admin/auth/checkSignUp.js"),
+    handler: require("../handler/admin/auth/signUp.js"),
   });
   // ADMIN SIGNIN ROUTE
   fastify.post("/sign-in", {
@@ -50,8 +50,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkSignIn.js"),
-    handler: require("../handler/auth/signIn.js"),
+    preHandler: require("../hooks/admin/auth/checkSignIn.js"),
+    handler: require("../handler/admin/auth/signIn.js"),
   });
   // ADMIN FORGOT PASS EMAIL VERIFICATION ROUTE
   fastify.patch("/forgot-email-verify", {
@@ -67,8 +67,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkForgotPassEmailVerify.js"),
-    handler: require("../handler/auth/forgotPasswordEmailVerify.js"),
+    preHandler: require("../hooks/admin/auth/checkForgotPassEmailVerify.js"),
+    handler: require("../handler/admin/auth/forgotPasswordEmailVerify.js"),
   });
   // ADMIN FORGOT PASS CODE VERIFICATION ROUTE
   fastify.post("/forgot-code-verify", {
@@ -85,8 +85,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkForgotPassCodeVerification.js"),
-    handler: require("../handler/auth/forgotPassCodeVerification.js"),
+    preHandler: require("../hooks/admin/auth/checkForgotPassCodeVerification.js"),
+    handler: require("../handler/admin/auth/forgotPassCodeVerification.js"),
   });
   // ADMIN PASS CHANGE ROUTE
   fastify.patch("/change-pass", {
@@ -103,16 +103,16 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/auth/changePass.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/auth/changePass.js"),
   });
   // ADMIN PROFILE CHANGE
   fastify.patch("/profile-upload", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").array("profiles", 3),
     ],
-    handler: require("../handler/auth/profileUpload.js"),
+    handler: require("../handler/admin/auth/profileUpload.js"),
   });
   // ADMIN PROFILE UPDATE
   fastify.patch("/profile-update", {
@@ -141,8 +141,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/auth/profileUpdate.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/auth/profileUpdate.js"),
   });
   // admin route end
   //  ADMIN SKILL ADD ROUTE
@@ -161,8 +161,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/skill/addSkill.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/skill/addSkill.js"),
   });
   // ADMIN SKILL UPDATE ROUTE
   fastify.put("/update-skill", {
@@ -190,8 +190,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/skill/updateSkill.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/skill/updateSkill.js"),
   });
   // ADMIN SKILL DELETE ROUTE
   fastify.delete("/delete-skill", {
@@ -204,25 +204,25 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/skill/deleteSkill.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/skill/deleteSkill.js"),
   });
   // skill route end
   // ADMIN PROJECT ADD ROUTE
   fastify.post("/add-project", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").array("projects", 10),
     ],
-    handler: require("../handler/cud/project/addProject.js"),
+    handler: require("../handler/admin/cud/project/addProject.js"),
   });
   // ADMIN PROJECT UPDATE ROUTE
   fastify.put("/update-project", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").array("projects", 10),
     ],
-    handler: require("../handler/cud/project/updateProject.js"),
+    handler: require("../handler/admin/cud/project/updateProject.js"),
   });
   // ADMIN PROJECT DELETE ROUTE
   fastify.delete("/delete-project", {
@@ -235,8 +235,8 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/project/deleteProject"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/project/deleteProject"),
   });
   // project route end
   // ADMIN FOOTER ADD ROUTE
@@ -244,12 +244,7 @@ function adminRouter(fastify, options, done) {
     schema: {
       body: {
         type: "object",
-        required: [
-          "contactInfo",
-          "socialLinks",
-          "navigationLinks",
-          "copyrightText",
-        ],
+        required: ["contactInfo", "addressMap", "socialLinks", "copyrightText"],
         properties: {
           contactInfo: {
             type: "object",
@@ -272,35 +267,20 @@ function adminRouter(fastify, options, done) {
               },
             },
           },
-          navigationLinks: {
-            type: "array",
-            items: {
-              type: "object",
-              required: ["name", "url"],
-              properties: {
-                name: { type: "string" },
-                url: { type: "string" },
-              },
-            },
-          },
+          addressMap: { type: "string" },
           copyrightText: { type: "string" },
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/footer/addFooter.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/footer/addFooter.js"),
   });
   // ADMIN FOOTER UPDATE ROUTE
   fastify.put("/update-footer", {
     schema: {
       body: {
         type: "object",
-        required: [
-          "contactInfo",
-          "socialLinks",
-          "navigationLinks",
-          "copyrightText",
-        ],
+        required: ["contactInfo", "socialLinks", "addressMap", "copyrightText"],
         properties: {
           contactInfo: {
             type: "object",
@@ -323,23 +303,13 @@ function adminRouter(fastify, options, done) {
               },
             },
           },
-          navigationLinks: {
-            type: "array",
-            items: {
-              type: "object",
-              required: ["name", "url"],
-              properties: {
-                name: { type: "string" },
-                url: { type: "string" },
-              },
-            },
-          },
+          addressMap: { type: "string" },
           copyrightText: { type: "string" },
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/footer/updateFooter.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/footer/updateFooter.js"),
   });
   // ADMIN FOOTER DELETE
   fastify.delete("/delete-footer", {
@@ -352,8 +322,8 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/footer/deleteFooter.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/footer/deleteFooter.js"),
   });
   // footer route end
   // ADMIN EXPERIENCE ADD ROUTE
@@ -373,8 +343,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/experience/addExperience.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/experience/addExperience.js"),
   });
   // ADMIN EXPERIENCE UPDATE ROUTE
   fastify.put("/update-experience", {
@@ -393,8 +363,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/experience/updateExperience.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/experience/updateExperience.js"),
   });
   // ADMIN EXPERIENCE DELETE ROUTE
   fastify.delete("/delete-experience", {
@@ -407,25 +377,25 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/experience/deleteExperience.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/experience/deleteExperience.js"),
   });
   // experience route end
   // ADMIN EDUCATION ADD ROUTE
   fastify.post("/add-education", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("education-image"),
     ],
-    handler: require("../handler/cud/education/addEducation.js"),
+    handler: require("../handler/admin/cud/education/addEducation.js"),
   });
   // ADMIN EDUCATION UPDATE ROUTE
   fastify.put("/update-education", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("education-image"),
     ],
-    handler: require("../handler/cud/education/updateEducation.js"),
+    handler: require("../handler/admin/cud/education/updateEducation.js"),
   });
   // ADMIN EDUCATION DELETE ROUTE
   fastify.delete("/delete-education", {
@@ -438,25 +408,25 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/education/deleteEducation.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/education/deleteEducation.js"),
   });
   // education route end
   // ADMIN BLOG ADD ROUTE
   fastify.post("/add-blog", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("blog-image"),
     ],
-    handler: require("../handler/cud/blog/addBlog.js"),
+    handler: require("../handler/admin/cud/blog/addBlog.js"),
   });
   // ADMIN  BLOG UPDATE ROUTE
   fastify.put("/update-blog", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("blog-image"),
     ],
-    handler: require("../handler/cud/blog/updateBlog.js"),
+    handler: require("../handler/admin/cud/blog/updateBlog.js"),
   });
   //ADMIN BLOG DELETE ROUTE
   fastify.delete("/delete-blog", {
@@ -469,8 +439,8 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/blog/deleteBlog.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/blog/deleteBlog.js"),
   });
   // blog router end
   // ADMIN THEME ADD ROUTE
@@ -502,8 +472,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/theme/addTheme.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/theme/addTheme.js"),
   });
   // ADMIN THEME UPDATE ROUTE
   fastify.put("/update-theme", {
@@ -547,8 +517,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/theme/updateTheme.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/theme/updateTheme.js"),
   });
   // ADMIN THEME DELETE
   fastify.delete("/delete-theme", {
@@ -561,10 +531,14 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/theme/deleteTheme.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/theme/deleteTheme.js"),
   });
   // theme route end
+
+
+
+ 
   //  ADMIN HOBBIE ADD ROUTE
   fastify.post("/add-hobbie", {
     schema: {
@@ -584,8 +558,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/hobbie/addHobbie.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/hobbie/addHobbie.js"),
   });
   // ADMIN HOBBIE UPDATE ROUTE
   fastify.put("/update-hobbie", {
@@ -613,8 +587,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/hobbie/updateHobbie.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/hobbie/updateHobbie.js"),
   });
   // ADMIN HOBBIE DELETE ROUTE
   fastify.delete("/delete-hobbie", {
@@ -627,25 +601,25 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/hobbie/deleteHobbie.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/hobbie/deleteHobbie.js"),
   });
   // hobbie route end
   // ADMIN META ROUTE
   fastify.post("/add-meta", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("meta-image"),
     ],
-    handler: require("../handler/cud/meta/addMeta.js"),
+    handler: require("../handler/admin/cud/meta/addMeta.js"),
   });
   // ADMIN META UPDATE ROUTE
   fastify.put("/update-meta", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("meta-image"),
     ],
-    handler: require("../handler/cud/meta/updateMeta.js"),
+    handler: require("../handler/admin/cud/meta/updateMeta.js"),
   });
   // ADMIN META DELETE
   fastify.delete("/delete-meta", {
@@ -658,25 +632,25 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/meta/deleteMeta.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/meta/deleteMeta.js"),
   });
   // meta route end
   // ADMIN CV ADD
   fastify.post("/add-cv", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("cv-pdf"),
     ],
-    handler: require("../handler/cud/cv/addCv.js"),
+    handler: require("../handler/admin/cud/cv/addCv.js"),
   });
   // ADMIN CV UPDATE
   fastify.put("/update-cv", {
     preHandler: [
-      require("../hooks/auth/checkAuth.js"),
+      require("../hooks/admin/auth/checkAuth.js"),
       require("../utils/multer/multer.js").single("cv-pdf"),
     ],
-    handler: require("../handler/cud/cv/updateCv.js"),
+    handler: require("../handler/admin/cud/cv/updateCv.js"),
   });
   // ADMIN CV DELETE
   fastify.delete("/delete-cv", {
@@ -689,8 +663,8 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/cv/deleteCv.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/cv/deleteCv.js"),
   });
   //ADMIN TOOL ADD ROUTE
   fastify.post("/add-tool", {
@@ -708,8 +682,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/tool/addTool.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/tool/addTool.js"),
   });
   // ADMIN TOOL UPDATE ROUTE
   fastify.put("/update-tool", {
@@ -734,8 +708,8 @@ function adminRouter(fastify, options, done) {
         },
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/tool/updateTool.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/tool/updateTool.js"),
   });
   // ADMIN TOOL DELETE ROUTE
   fastify.delete("/delete-tool", {
@@ -748,10 +722,44 @@ function adminRouter(fastify, options, done) {
         required: ["id"], // Ensure 'id' is provided
       },
     },
-    preHandler: require("../hooks/auth/checkAuth.js"),
-    handler: require("../handler/cud/tool/deleteTool.js"),
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/tool/deleteTool.js"),
   });
   // tool route end
+  // ADMIN SERVICE ADD ROUTE
+  fastify.post("/add-service", {
+    preHandler: [
+      require("../hooks/admin/auth/checkAuth.js"),
+      require("../utils/multer/multer.js").single("service-image"),
+    ],
+    handler: require("../handler/admin/cud/service/addService.js"),
+  });
+
+  // ADMIN SERVICE UPDATE ROUTE
+  fastify.put("/update-service", {
+    preHandler: [
+      require("../hooks/admin/auth/checkAuth.js"),
+      require("../utils/multer/multer.js").single("service-image"),
+    ],
+    handler: require("../handler/admin/cud/service/updateService.js"),
+  });
+  // ADMIN SERVICE DELETE ROUTE
+  fastify.delete("/delete-service", {
+    schema: {
+      querystring: {
+        type: "object",
+        properties: {
+          id: { type: "string" },
+        },
+        required: ["id"], // Ensure 'id' is provided
+      },
+    },
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/service/deleteService.js"),
+  });
+
+  // service route end
+
   done();
 }
 module.exports = adminRouter;

@@ -15,12 +15,7 @@ const footerSchema = new mongoose.Schema(
         iconClass: { type: String, required: false }, // e.g., 'fab fa-github'
       },
     ],
-    navigationLinks: [
-      {
-        name: { type: String, required: true }, // e.g., 'Home', 'Projects'
-        url: { type: String, required: true },
-      },
-    ],
+    addressMap: { type: String, required: true },
     copyrightText: { type: String, required: true }, // e.g., '© 2024 Your Name'
     user: {
       type: String,
