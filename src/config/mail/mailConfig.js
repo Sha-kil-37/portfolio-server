@@ -14,8 +14,6 @@ const transporter = nodemailer.createTransport({
 // 
 const mailOption = function (recever, subject, text, html) {
   // 
-  
-  // 
   return {
     from: process.env.OWNER_GMAIL,
     to: recever,

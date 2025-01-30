@@ -1,3 +1,4 @@
+// forgot pass code verification handler
 'use strict'
 module.exports = async function (request, reply) {
   //

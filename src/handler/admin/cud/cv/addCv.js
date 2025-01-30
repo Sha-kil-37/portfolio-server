@@ -1,3 +1,4 @@
+// add cv
 'use strict'
 const Cv = require("../../../../model/cv/cv.model");
 //
@@ -41,6 +42,7 @@ module.exports = async function (request, reply) {
       msg: "Cv Add Successfully",
     });
   } catch (error) {
+   
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",

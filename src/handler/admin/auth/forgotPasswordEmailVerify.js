@@ -2,11 +2,11 @@
 
 const {
   forgotPassEmailVerifyTemplate,
-} = require("../../../config/mail/mailTemplate.js");
+} = require("../../../config/mail/mailTemplate");
 require("dotenv").config();
 const {
   sendPassForgotEmailVerification,
-} = require("../../../config/mail/mailSender.js");
+} = require("../../../utils/mailSender/mailSender.js");
 const Admin = require("../../../model/admin/admin.model.js");
 //
 module.exports = async function (request, reply) {
