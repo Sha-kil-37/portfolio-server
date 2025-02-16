@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 const Admin = require("../../../model/admin/admin.model.js");
 //

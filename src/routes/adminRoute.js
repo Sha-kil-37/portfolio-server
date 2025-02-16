@@ -110,7 +110,7 @@ function adminRouter(fastify, options, done) {
   fastify.patch("/profile-upload", {
     preHandler: [
       require("../hooks/admin/auth/checkAuth.js"),
-      require("../utils/multer/multer.js").array("profiles", 3),
+      require("../utils/multer/multer.js").array("profiles", 6),
     ],
     handler: require("../handler/admin/auth/profileUpload.js"),
   });
@@ -126,7 +126,7 @@ function adminRouter(fastify, options, done) {
             pattern: "^[a-zA-Zà-ÿÀ-Ÿ'\\-\\s]+$",
           },
           title: {
-            type: "string",
+            type: "array",
             pattern: "^[a-zA-Zà-ÿÀ-Ÿ'\\-\\s]+$",
           },
           subTitle: {

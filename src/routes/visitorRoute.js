@@ -13,7 +13,7 @@ function visitorRouter(fastify, options, done) {
           },
           email: {
             type: "string",
-            format: 'email',
+            format: "email",
           },
           message: {
             type: "string",
@@ -23,6 +23,7 @@ function visitorRouter(fastify, options, done) {
     },
     handler: require("../handler/visitor/contact/contact.js"),
   });
+  fastify.get("/get-admin",require("../handler/visitor/getAdmin.js"));
   // contact route end
   done();
 }

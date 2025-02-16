@@ -9,7 +9,7 @@ const adminSchema = new Schema(
       required: true,
     },
     title: {
-      type: String,
+      type: [String],
       default: null,
     },
     subTitle: {
