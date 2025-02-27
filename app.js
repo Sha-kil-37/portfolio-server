@@ -11,7 +11,7 @@ fastify.register(require("@fastify/rate-limit"), {
 // REGISTER CORS
 fastify.register(require("@fastify/cors"), {
   // put your options here
-  origin: true,
+  origin: true, // origin er kaj ace 
 });
 // REGISTER JWT TOKEN
 fastify.register(require("@fastify/jwt"), {
