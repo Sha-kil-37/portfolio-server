@@ -1,5 +1,4 @@
-
-'use strict'
+"use strict";
 const mongoose = require("mongoose");
 const Cv = require("../../../../model/cv/cv.model.js");
 //
@@ -44,7 +43,6 @@ module.exports = async function (request, reply) {
       msg: "Cv Update Successfully",
     });
   } catch (error) {
-
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",

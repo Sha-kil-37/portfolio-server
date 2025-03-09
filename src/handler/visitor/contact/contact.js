@@ -27,7 +27,7 @@ module.exports = async function (request, reply) {
       .status(200)
       .send({ success: true, msg: "Form Submit Successfully" });
   } catch (error) {
-    reply.status(500).send({
+    return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",
     });

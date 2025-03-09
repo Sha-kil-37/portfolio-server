@@ -14,7 +14,7 @@ module.exports = async (req, reply) => {
       data: admin,
     });
   } catch (error) {
-    reply.status(500).send({
+    return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",
     });
