@@ -6,13 +6,13 @@ const Footer = require("../../../../model/footer/footer.model");
 module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { id } = request.query;
-  const { contactInfo, socialLinks, copyrightText } = request.body;
+  const { contactInfo, socialLinks, copyrightText, version, releaseDate } =
+    request.body;
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return reply.status(400).send({ error: "Invalid Id" });
     }
-
-    //
+   
     await Footer.updateOne(
       {
         user: email,
@@ -23,9 +23,12 @@ module.exports = async function (request, reply) {
           contactInfo: contactInfo,
           socialLinks: socialLinks,
           copyrightText: copyrightText,
+          version: version,
+          releaseDate: releaseDate,
         },
       }
     );
+
     return reply.status(200).send({
       success: true,
       msg: "Footer Update Successfully",

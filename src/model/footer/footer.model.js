@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 //
 const footerSchema = new mongoose.Schema(
   {
+    version: { type: String, required: true }, // e.g., '1.0.0'
+    releaseDate: { type: Date, required: true },
     contactInfo: {
       email: { type: String, required: true },
       phone: { type: String, required: false },

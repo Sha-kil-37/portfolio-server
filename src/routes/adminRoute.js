@@ -1,5 +1,7 @@
-
 "use strict";
+
+const { version } = require("mongoose");
+
 //
 function adminRouter(fastify, options, done) {
   // ADMIN WELCOME ROUTE
@@ -244,8 +246,10 @@ function adminRouter(fastify, options, done) {
     schema: {
       body: {
         type: "object",
-        required: ["contactInfo", "addressMap", "socialLinks", "copyrightText"],
+        required: ["contactInfo", "addressMap", "socialLinks", "copyrightText","version","releaseDate"],
         properties: {
+         version: { type: "string" },
+         releaseDate: { type: "string" },
           contactInfo: {
             type: "object",
             required: ["email", "phone", "address"],
@@ -280,8 +284,10 @@ function adminRouter(fastify, options, done) {
     schema: {
       body: {
         type: "object",
-        required: ["contactInfo", "socialLinks", "addressMap", "copyrightText"],
+        required: ["contactInfo", "socialLinks", "addressMap", "copyrightText","version","releaseDate"],
         properties: {
+          version: { type: "string" },
+          releaseDate: { type: "string" },
           contactInfo: {
             type: "object",
             required: ["email", "phone", "address"],
@@ -536,9 +542,6 @@ function adminRouter(fastify, options, done) {
   });
   // theme route end
 
-
-
- 
   //  ADMIN HOBBIE ADD ROUTE
   fastify.post("/add-hobbie", {
     schema: {
