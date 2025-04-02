@@ -3,7 +3,7 @@ const Footer = require("../../../../model/footer/footer.model");
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;
-  const { contactInfo, socialLinks, copyrightText, addressMap,version,releaseDate} =
+  const { contactInfo, socialLinks, copyrightText, addressMap,version,releaseDate,logo} =
     request.body;
   //
   try {
@@ -23,6 +23,7 @@ module.exports = async function (request, reply) {
       copyrightText: copyrightText,
       user: email,
       version: version,
+      logo: logo,
       releaseDate: releaseDate,
     });
     await newFooter.save();

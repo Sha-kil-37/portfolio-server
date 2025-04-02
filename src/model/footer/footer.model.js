@@ -19,6 +19,10 @@ const footerSchema = new mongoose.Schema(
     ],
     addressMap: { type: String, required: true },
     copyrightText: { type: String, required: true }, // e.g., '© 2024 Your Name'
+    logo:{
+      type: String,
+      required: true,
+    },
     user: {
       type: String,
       required: true,

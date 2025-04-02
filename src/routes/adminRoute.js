@@ -1,5 +1,5 @@
 "use strict";
-// 
+//
 const { version } = require("mongoose");
 
 //
@@ -241,50 +241,21 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/admin/cud/project/deleteProject"),
   });
   // project route end
+
   // ADMIN FOOTER ADD ROUTE
   fastify.post("/add-footer", {
     schema: {
       body: {
         type: "object",
-        required: ["contactInfo", "addressMap", "socialLinks", "copyrightText","version","releaseDate"],
-        properties: {
-         version: { type: "string" },
-         releaseDate: { type: "string" },
-          contactInfo: {
-            type: "object",
-            required: ["email", "phone", "address"],
-            properties: {
-              email: { type: "string", format: "email" },
-              phone: { type: "string" },
-              address: { type: "string" },
-            },
-          },
-          socialLinks: {
-            type: "array",
-            items: {
-              type: "object",
-              required: ["platform", "url", "iconClass"],
-              properties: {
-                platform: { type: "string" },
-                url: { type: "string", format: "uri" },
-                iconClass: { type: "string" },
-              },
-            },
-          },
-          addressMap: { type: "string" },
-          copyrightText: { type: "string" },
-        },
-      },
-    },
-    preHandler: require("../hooks/admin/auth/checkAuth.js"),
-    handler: require("../handler/admin/cud/footer/addFooter.js"),
-  });
-  // ADMIN FOOTER UPDATE ROUTE
-  fastify.put("/update-footer", {
-    schema: {
-      body: {
-        type: "object",
-        required: ["contactInfo", "socialLinks", "addressMap", "copyrightText","version","releaseDate"],
+        required: [
+          "contactInfo",
+          "addressMap",
+          "socialLinks",
+          "copyrightText",
+          "version",
+          "releaseDate",
+          "logo",
+        ],
         properties: {
           version: { type: "string" },
           releaseDate: { type: "string" },
@@ -311,6 +282,54 @@ function adminRouter(fastify, options, done) {
           },
           addressMap: { type: "string" },
           copyrightText: { type: "string" },
+          logo: { type: "string" },
+        },
+      },
+    },
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/cud/footer/addFooter.js"),
+  });
+  // ADMIN FOOTER UPDATE ROUTE
+  fastify.put("/update-footer", {
+    schema: {
+      body: {
+        type: "object",
+        required: [
+          "contactInfo",
+          "socialLinks",
+          "addressMap",
+          "copyrightText",
+          "version",
+          "releaseDate",
+          "logo",
+        ],
+        properties: {
+          version: { type: "string" },
+          releaseDate: { type: "string" },
+          contactInfo: {
+            type: "object",
+            required: ["email", "phone", "address"],
+            properties: {
+              email: { type: "string", format: "email" },
+              phone: { type: "string" },
+              address: { type: "string" },
+            },
+          },
+          socialLinks: {
+            type: "array",
+            items: {
+              type: "object",
+              required: ["platform", "url", "iconClass"],
+              properties: {
+                platform: { type: "string" },
+                url: { type: "string", format: "uri" },
+                iconClass: { type: "string" },
+              },
+            },
+          },
+          addressMap: { type: "string" },
+          copyrightText: { type: "string" },
+          logo: { type: "string" },
         },
       },
     },

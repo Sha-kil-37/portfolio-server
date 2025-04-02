@@ -6,7 +6,7 @@ const Footer = require("../../../../model/footer/footer.model");
 module.exports = async function (request, reply) {
   const { email } = request.headers;
   const { id } = request.query;
-  const { contactInfo, socialLinks, copyrightText, version, releaseDate } =
+  const { contactInfo, socialLinks, copyrightText, version, releaseDate,logo } =
     request.body;
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -25,6 +25,7 @@ module.exports = async function (request, reply) {
           copyrightText: copyrightText,
           version: version,
           releaseDate: releaseDate,
+          logo: logo,
         },
       }
     );
