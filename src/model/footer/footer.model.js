@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const footerSchema = new mongoose.Schema(
   {
     version: { type: String, required: true }, // e.g., '1.0.0'
-    releaseDate: { type: Date, required: true },
+    releaseDate: { type: String, default: () => new Date().toISOString() },
     contactInfo: {
       email: { type: String, required: true },
       phone: { type: String, required: false },
@@ -14,12 +14,11 @@ const footerSchema = new mongoose.Schema(
       {
         platform: { type: String, required: true }, // e.g., 'LinkedIn', 'GitHub'
         url: { type: String, required: true },
-        iconClass: { type: String, required: false }, // e.g., 'fab fa-github'
       },
     ],
     addressMap: { type: String, required: true },
-    copyrightText: { type: String, required: true }, // e.g., '© 2024 Your Name'
-    logo:{
+    copyrightText: { type: String, required: true }, // e.g., '© 2025 Your Name'
+    logo: {
       type: String,
       required: true,
     },
