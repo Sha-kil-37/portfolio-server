@@ -272,10 +272,11 @@ function adminRouter(fastify, options, done) {
             type: "array",
             items: {
               type: "object",
-              required: ["platform", "url"],
+              required: ["platform", "url", "icon"],
               properties: {
                 platform: { type: "string" },
                 url: { type: "string", format: "uri" },
+                icon: { type: "string" },
               },
             },
           },
@@ -318,10 +319,11 @@ function adminRouter(fastify, options, done) {
             type: "array",
             items: {
               type: "object",
-              required: ["platform", "url"],
+              required: ["platform", "url", "icon"],
               properties: {
                 platform: { type: "string" },
                 url: { type: "string", format: "uri" },
+                icon: { type: "string" },
               },
             },
           },

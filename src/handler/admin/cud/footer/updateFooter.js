@@ -30,7 +30,7 @@ module.exports = async function (request, reply) {
           socialLinks: socialLinks,
           copyrightText: copyrightText,
           version: version,
-          releaseDate: new Date(releaseDate),
+          releaseDate: releaseDate,
           logo: logo,
         },
       }
@@ -42,10 +42,10 @@ module.exports = async function (request, reply) {
     });
     //
   } catch (error) {
-    console.log(error);
-    // return reply.status(500).send({
-    //   success: false,
-    //   msg: "Internal Server Error",
-    // });
+    
+    return reply.status(500).send({
+      success: false,
+      msg: "Internal Server Error",
+    });
   }
 };
