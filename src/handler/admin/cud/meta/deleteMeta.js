@@ -1,5 +1,5 @@
 'use strict'
-
+// 
 const mongoose = require("mongoose");
 const Meta = require("../../../../model/meta/meta.model.js");
 //
@@ -17,6 +17,7 @@ module.exports = async function (request, reply) {
       _id: id,
       user: email,
     });
+    
     // delete cloudinary meta favicon image before delete meta data
     await this.cloudinary.uploader.destroy(findExistFavicon.favicon.public_id);
     await Meta.deleteOne({ _id: id, user: email });

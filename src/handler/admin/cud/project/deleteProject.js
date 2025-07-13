@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 const Project = require("../../../../model/projects/project.model.js");
 const mongoose = require("mongoose");
 module.exports = async function (request, reply) {

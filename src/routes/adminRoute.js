@@ -1,7 +1,6 @@
 "use strict";
 //
 const { version } = require("mongoose");
-
 //
 function adminRouter(fastify, options, done) {
   // ADMIN WELCOME ROUTE

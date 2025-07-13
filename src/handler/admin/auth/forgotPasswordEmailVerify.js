@@ -1,5 +1,5 @@
 'use strict'
-
+// 
 const {
   forgotPassEmailVerifyTemplate,
 } = require("../../../config/mail/mailTemplate");

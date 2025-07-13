@@ -1,8 +1,6 @@
 "use strict";
-
+// 
 const Admin = require("../../../model/admin/admin.model.js");
-//
-require("dotenv").config();
 //
 module.exports = async function (request, reply) {
   const { email } = request.headers;

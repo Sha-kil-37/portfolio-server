@@ -4,3 +4,10 @@
 //
 
 আমার একটি ইমেজ আরে আছে আমি চাই আমি যখন আমার কোন একটি ইমেজ ক্লিক করব তখন আমার ইমেজটি ইমেজ array জিরো নাম্বার ইনডেক্সে আমার  ক্লিক করা ইমেজটি অবস্থান নেক
+
+
+<!-- portfolio-projects/landscape-9175952_1280.png
+portfolio-projects/pexels-202387659-30230100.jpg
+portfolio-projects/pexels-guruh-budi-430167744-30219924.jpg
+portfolio-projects/pexels-jj-carter-402482802-30229262.jpg
+portfolio-projects/pexels-larissafarber-18405211.jpg -->

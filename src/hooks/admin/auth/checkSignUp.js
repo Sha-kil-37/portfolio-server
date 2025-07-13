@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 require("dotenv").config();
 module.exports = async function (request, reply) {
   const { name, email, password } = request.body;
@@ -9,7 +9,6 @@ module.exports = async function (request, reply) {
         .send({ success: false, msg: "Invalid Credential" });
     }
   } catch (error) {
-    
     return reply
       .status(500)
       .send({ success: false, msg: "Internal Server Error" });

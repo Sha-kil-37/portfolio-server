@@ -15,7 +15,8 @@ fastify.register(require("@fastify/cors"), {
 });
 // REGISTER JWT TOKEN
 fastify.register(require("@fastify/jwt"), {
-  secret: process.env.TOKEN_SECRET,
+  // secret: process.env.TOKEN_SECRET,
+  secret:process.env.TOKEN_SECRET,
 });
 // REGISTER MULTIPART FOR FORM DATA
 fastify.register(require("@fastify/multipart"), {

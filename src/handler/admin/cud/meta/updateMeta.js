@@ -60,10 +60,9 @@ module.exports = async function (request, reply) {
     );
     return reply.status(200).send({
       success: true,
-      msg: "Education Update Successfully",
+      msg: "Meta Update Successfully",
     });
   } catch (error) {
-    console.log(error);
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",

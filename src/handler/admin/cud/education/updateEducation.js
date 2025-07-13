@@ -80,6 +80,7 @@ module.exports = async function (request, reply) {
       msg: "Education Update Successfully",
     });
   } catch (error) {
+   
     return reply.status(500).send({
       success: false,
       msg: "Internal Server Error",

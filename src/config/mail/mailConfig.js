@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 const transporter = nodemailer.createTransport({
@@ -6,14 +6,13 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // true for port 465
   auth: {
-    user: 'your-email@example.com', // your SMTP username
-    user:process.env.OWNER_GMAIL,
-    pass: process.env.APP_PASS,    // your SMTP password
+    user: process.env.OWNER_GMAIL,
+    pass: process.env.APP_PASS, // your SMTP password
   },
 });
-// 
+//
 const mailOption = function (recever, subject, text, html) {
-  // 
+  //
   return {
     from: process.env.OWNER_GMAIL,
     to: recever,
