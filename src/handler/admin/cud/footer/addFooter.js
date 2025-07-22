@@ -13,7 +13,6 @@ module.exports = async function (request, reply) {
     logo,
   } = request.body;
   //
-
   try {
     const findExistFooter = await Footer.findOne({
       user: email,
