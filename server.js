@@ -2,7 +2,7 @@
 require("dotenv").config();
 const fastify = require("./app");
 const dbConnection = require("./src/config/db/dbConnection");
-const port = Number(process.env.PORT) || 8000;
+const port = process.env.PORT || 8000;
 //
 async function start() {
   try {

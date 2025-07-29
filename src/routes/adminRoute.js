@@ -116,8 +116,8 @@ function adminRouter(fastify, options, done) {
     handler: require("../handler/admin/auth/profileUpload.js"),
   });
   // ADMIN PROFILE UPDATE
-
- fastify.patch("/profile-update", {
+  //
+  fastify.patch("/profile-update", {
     schema: {
       body: {
         type: "object",
@@ -129,7 +129,6 @@ function adminRouter(fastify, options, done) {
           },
           title: {
             type: "array",
-            
           },
           subTitle: {
             type: "string",
@@ -146,8 +145,6 @@ function adminRouter(fastify, options, done) {
     preHandler: require("../hooks/admin/auth/checkAuth.js"),
     handler: require("../handler/admin/auth/profileUpdate.js"),
   });
-
-
 
   // admin route end
   //  ADMIN SKILL ADD ROUTE
@@ -280,7 +277,7 @@ function adminRouter(fastify, options, done) {
                 platform: { type: "string" },
                 url: { type: "string", format: "uri" },
                 icon: { type: "string" },
-                color: { type: "string"}
+                color: { type: "string" },
               },
             },
           },
