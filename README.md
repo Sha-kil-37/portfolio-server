@@ -11,3 +11,37 @@ portfolio-projects/pexels-202387659-30230100.jpg
 portfolio-projects/pexels-guruh-budi-430167744-30219924.jpg
 portfolio-projects/pexels-jj-carter-402482802-30229262.jpg
 portfolio-projects/pexels-larissafarber-18405211.jpg -->
+
+
+
+<!--  -->
+  fastify.patch("/profile-update", {
+    schema: {
+      body: {
+        type: "object",
+        required: ["name", "title", "age", "about", "subTitle"],
+        properties: {
+          name: {
+            type: "string",
+            pattern: "^[a-zA-Zà-ÿÀ-Ÿ'\\-\\s]+$",
+          },
+          title: {
+            type: "array",
+            // pattern: "^[a-zA-Zà-ÿÀ-Ÿ'\\-\\s]+$",
+          },
+          subTitle: {
+            type: "string",
+          },
+          age: {
+            type: "string",
+          },
+          about: {
+            type: "string",
+          },
+        },
+      },
+    },
+    preHandler: require("../hooks/admin/auth/checkAuth.js"),
+    handler: require("../handler/admin/auth/profileUpdate.js"),
+  });
+<!--  -->

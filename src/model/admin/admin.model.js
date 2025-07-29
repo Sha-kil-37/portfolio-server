@@ -9,8 +9,8 @@ const adminSchema = new Schema(
       required: true,
     },
     title: {
-      type: [String],
-      default: null,
+      type: [String], // Array of strings
+      default: [], 
     },
     subTitle: {
       type: String,

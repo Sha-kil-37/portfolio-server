@@ -15,6 +15,7 @@ const footerSchema = new mongoose.Schema(
         platform: { type: String, required: true }, // e.g., 'LinkedIn', 'GitHub'
         url: { type: String, required: true },
         icon: { type: String, required: true }, // e.g., 'LinkedInIcon', 'GitHubIcon'
+        color: { type: String, required: true }, // e.g., '#0077B5' for LinkedIn
       },
     ],
     addressMap: { type: String, required: true },
