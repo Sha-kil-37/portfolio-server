@@ -9,8 +9,7 @@ async function start() {
     await fastify.listen({ port: port });
     dbConnection();
   } catch (error) {
-    // fastify.log.error(error);
-    console.log(error);
+
     process.exit(1);
   }
 }
