@@ -1,6 +1,7 @@
 // visitor route
 "use strict";
 function visitorRouter(fastify, options, done) {
+  //
   fastify.post("/contact", {
     schema: {
       body: {
@@ -22,10 +23,16 @@ function visitorRouter(fastify, options, done) {
     },
     handler: require("../handler/visitor/contact/contact.js"),
   }); // contact route
-
-  fastify.get("/get-admin", require("../handler/visitor/getAdmin.js")); // get admin route
+  //
+  fastify.get("/get-admin", require("../handler/visitor/admin/getAdmin.js")); // get admin route
+  //
   fastify.get("/get-footer", require("../handler/visitor/footer/getFooter.js")); // get footer route
-
+  // admin get github data route
+  fastify.get(
+    "/get-github",
+    require("../handler/visitor/github/getAdminGithub.js")
+  );
+  //
   done();
 }
 module.exports = visitorRouter;
