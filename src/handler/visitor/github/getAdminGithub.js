@@ -1,7 +1,6 @@
 "use strict";
 require("dotenv").config();
 const axios = require("axios");
-
 //
 module.exports = async (req, reply) => {
   try {
@@ -14,6 +13,7 @@ module.exports = async (req, reply) => {
       }
     );
     //
+    console.log(response.data);
     return reply.status(200).send({
       success: true,
       message: "Github data fetched successfully",
