@@ -6,10 +6,9 @@ const port = process.env.PORT || 8000;
 //
 async function start() {
   try {
-    await fastify.listen({ port: port });
+    await fastify.listen({ port: port, host: "0.0.0.0" });
     dbConnection();
   } catch (error) {
-
     process.exit(1);
   }
 }
