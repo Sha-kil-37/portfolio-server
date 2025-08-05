@@ -20,7 +20,7 @@ module.exports = async (req, reply) => {
       data: response.data,
     });
   } catch (error) {
-  
+    console.log(error);
     reply.status(500).send({
       success: false,
       msg: "Internal Server Error",
