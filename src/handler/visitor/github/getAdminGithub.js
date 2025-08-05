@@ -13,13 +13,14 @@ module.exports = async (req, reply) => {
       }
     );
     //
-    console.log(response.data);
+
     return reply.status(200).send({
       success: true,
       message: "Github data fetched successfully",
       data: response.data,
     });
   } catch (error) {
+  
     reply.status(500).send({
       success: false,
       msg: "Internal Server Error",
